@@ -1,0 +1,47 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Righteous&display=swap");
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25vw;
+    min-height: 50vh;
+    background-color: whitesmoke;
+    border: 5px solid #719c37;
+    border-radius: 20px;
+    padding: 20px;
+    transform: translateY(40%) translateX(10%);
+}
+.login-heading {
+    width: 30%;
+    margin: 10px auto;
+    padding: 10px;
+    color: rgb(2, 56, 69);
+    text-align: center;
+    border: 2px solid rgb(2, 56, 69);
+    border-radius: 20%;
+    font-family: "Permanent Marker", cursive;
+    font-family: "Righteous", cursive;
+}
+input {
+    padding: 10px;
+    margin: 5px auto;
+    width: 60%;
+    border: 2px solid black;
+    border-radius: 20%;
+}
+.submit-button {
+    width: 25%;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 30%;
+    background-color: rgb(2, 56, 69);
+    color: #f1ffe7;
+    cursor: pointer;
+    transition: all 200ms ease-out;
+    font-family: sans-serif;
+}
+.submit-button:hover {
+    transform: scale(1.2);
+    background-color: #f1ffe7;
+    color: rgb(2, 56, 69);
+}

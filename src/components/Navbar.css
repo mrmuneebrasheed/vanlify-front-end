@@ -1,19 +1,72 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap");
 * {
     margin: 0;
 }
 .nav {
+    display: flex;
     min-height: 10vh;
-    width: 100%;
+    width: 99.3%;
+    padding: 5px;
     background-color: rgb(2, 56, 69);
 }
 .skew {
-    /* height: 80%; */
+    height: 80%;
     width: 30%;
-    background-color: aliceblue;
-    margin: 2px auto;
-    transform: skewX(15deg);
+    color: #f1ffe7;
+    border: 2px double #f1ffe7;
+    justify-self: flex-end;
+    align-self: center;
+    margin-left: 27%;
+    transform: skewX(30deg);
+    animation: title 1s ease-in-out;
+    transition: all 200ms linear;
+}
+.skew:hover {
+    background-color: #f1ffe7;
+    color: black;
+    border: 4px double black;
+    transform: scale(1.1) skewX(30deg);
 }
 .title {
-    transform: skewX(-15deg);
+    padding: 5px;
+    transform: skewX(-30deg);
     text-align: center;
+    font-family: "Permanent Marker", cursive;
+    letter-spacing: 2px;
+}
+.logo {
+    width: 80px;
+    padding: 5px;
+    margin-left: 30px;
+    align-self: flex-start;
+    border-radius: 30px;
+    transition: all 200ms linear;
+}
+.logo:hover {
+    transform: rotate(100deg) scale(1.1);
+}
+.nav-link {
+    border: 2px double #f1ffe7;
+    color: #f1ffe7;
+    align-self: center;
+    position: absolute;
+    right: 30px;
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-size: 1.3rem;
+    transition: all 100ms linear;
+}
+.nav-link:hover {
+    background-color: #f1ffe7;
+    color: black;
+    border: 4px double black;
+    transform: scale(1.2);
+}
+@keyframes title {
+    from {
+        transform: rotateY(180deg);
+    }
+    to {
+        transform: rotateX(0deg);
+    }
 }

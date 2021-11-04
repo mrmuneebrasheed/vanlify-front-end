@@ -1,0 +1,16 @@
+.map-homepage {
+    height: 70vh;
+    width: 50vw;
+    background-color: whitesmoke;
+    position: absolute;
+    right: 0;
+    border: 5px solid #719c37;
+    transform: translate(-8%, -60%);
+}
+.map-container {
+    height: 90%;
+    width: 90%;
+    margin: 10px auto;
+    border: 2px solid black;
+    border-radius: 10px;
+}
