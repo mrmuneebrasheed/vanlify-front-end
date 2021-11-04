@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+}
+.nav {
+    min-height: 10vh;
+    width: 100%;
+    background-color: rgb(2, 56, 69);
+}
+.skew {
+    /* height: 80%; */
+    width: 30%;
+    background-color: aliceblue;
+    margin: 2px auto;
+    transform: skewX(15deg);
+}
+.title {
+    transform: skewX(-15deg);
+    text-align: center;
+}
