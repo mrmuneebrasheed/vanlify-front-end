@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import logo from "../assets/img/logo2.png";
 import "./Navbar.css";
 
-export default function Navbar() {
+export default function Navbar(props) {
+    console.log(props.signup);
     return (
         <div className="nav">
             <span>
@@ -12,9 +13,15 @@ export default function Navbar() {
             <div className="skew">
                 <h1 className="title">Vanlify</h1>
             </div>
-            <Link to="/users/signup">
-                <span className="nav-link">Signup</span>
-            </Link>
+            {props.signup === false ? (
+                <Link to="/users/signup">
+                    <span className="nav-link">Signup</span>
+                </Link>
+            ) : (
+                <Link to="/">
+                    <span className="nav-link">Home</span>
+                </Link>
+            )}
         </div>
     );
 }

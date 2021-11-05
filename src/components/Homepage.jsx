@@ -5,7 +5,7 @@ import Header from "./Header";
 export default function Homepage() {
     return (
         <div className="homepage">
-            <Navbar />
+            <Navbar signup={false} />
             <Header />
         </div>
     );
