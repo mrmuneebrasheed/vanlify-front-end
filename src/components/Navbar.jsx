@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import logo from "../assets/img/logo2.png";
 import "./Navbar.css";
 
@@ -11,7 +12,9 @@ export default function Navbar() {
             <div className="skew">
                 <h1 className="title">Vanlify</h1>
             </div>
-            <span className="nav-link">Signup</span>
+            <Link to="/users/signup">
+                <span className="nav-link">Signup</span>
+            </Link>
         </div>
     );
 }

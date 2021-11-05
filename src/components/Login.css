@@ -6,15 +6,20 @@
     width: 25vw;
     min-height: 50vh;
     background-color: whitesmoke;
-    border: 5px solid #719c37;
+    border: 2px solid #f1ffe0;
     border-radius: 20px;
     padding: 20px;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../assets/img/LoginBackground.jpg");
+    background-size: cover;
     transform: translateY(40%) translateX(10%);
+    box-shadow: 0 5px 20px 2px whitesmoke;
 }
 .login-heading {
     width: 30%;
     margin: 10px auto;
     padding: 10px;
+    background-color: whitesmoke;
     color: rgb(2, 56, 69);
     text-align: center;
     border: 2px solid rgb(2, 56, 69);
@@ -29,7 +34,12 @@ input {
     border: 2px solid black;
     border-radius: 20%;
 }
+/* input: {
+    transform: scale(1.2);
+    border: 2px solid blue;
+} */
 .submit-button {
+    display: block;
     width: 25%;
     margin: 10px auto;
     padding: 10px;
@@ -44,4 +54,16 @@ input {
     transform: scale(1.2);
     background-color: #f1ffe7;
     color: rgb(2, 56, 69);
+}
+.login-signup {
+    color: whitesmoke;
+}
+.login-signup > * {
+    padding: 5px;
+    background-color: whitesmoke;
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(2, 56, 69);
+    border: 2px solid black;
+    border-radius: 12px;
 }

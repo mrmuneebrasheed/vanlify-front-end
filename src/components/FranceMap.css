@@ -1,16 +1,30 @@
 .map-homepage {
-    height: 70vh;
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../assets/img/HomepageMapBackground.jpg");
+    background-size: cover;
+    height: 80vh;
     width: 50vw;
     background-color: whitesmoke;
     position: absolute;
     right: 0;
-    border: 5px solid #719c37;
-    transform: translate(-8%, -60%);
+    border: 2px solid #f0f3ed;
+    transform: translate(-8%, -58%);
+    box-shadow: 0 5px 20px 2px whitesmoke;
 }
 .map-container {
-    height: 90%;
-    width: 90%;
-    margin: 10px auto;
+    height: 80%;
+    width: 99%;
+    margin: auto;
     border: 2px solid black;
-    border-radius: 10px;
+    border-radius: 0 0 20px 20px;
+}
+
+.map-description {
+    width: 60%;
+    margin: 20px auto;
+    padding: 10px;
+    font-size: 1.3rem;
+    border: 1px solid whitesmoke;
+    border-radius: 20px;
+    color: whitesmoke;
 }

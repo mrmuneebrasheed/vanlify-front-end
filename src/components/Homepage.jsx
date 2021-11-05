@@ -7,9 +7,6 @@ export default function Homepage() {
         <div className="homepage">
             <Navbar />
             <Header />
-            <p style={{ color: "white", position: "absolute", bottom: 0 }}>
-                Hello
-            </p>
         </div>
     );
 }

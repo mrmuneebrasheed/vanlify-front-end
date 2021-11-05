@@ -1,8 +1,9 @@
 .App {
     text-align: center;
 }
-.homepage {
-    background: url("./assets/img/HomepageBackground.jpg");
+.App {
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("./assets/img/GeneralBackground.jpg");
     background-size: cover;
     min-height: 150vh;
 }
