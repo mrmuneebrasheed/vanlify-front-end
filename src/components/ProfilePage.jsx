@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Navbar from "./Navbar";
 
 export default function ProfilePage() {
     const [city, setCity] = useState("");
@@ -14,7 +15,8 @@ export default function ProfilePage() {
         setAvatar(e.target.value);
     };
     return (
-        <div>
+        <>
+            <Navbar signup={false} loggedIn={true} />
             <div>
                 <input
                     onChange={cityChange}
@@ -43,6 +45,6 @@ export default function ProfilePage() {
                 </div>
             </div>
             <div></div>
-        </div>
+        </>
     );
 }

@@ -6,9 +6,8 @@
     width: 50vw;
     background-color: whitesmoke;
     position: absolute;
-    right: 0;
     border: 2px solid #f0f3ed;
-    transform: translate(-8%, -58%);
+    transform: translate(85%, -58%);
     box-shadow: 0 5px 20px 2px whitesmoke;
 }
 .map-container {

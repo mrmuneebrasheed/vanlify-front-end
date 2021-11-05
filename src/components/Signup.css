@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Righteous&display=swap");
+
 .signup-card {
     display: flex;
     flex-direction: column;
@@ -37,6 +39,9 @@
     color: rgb(2, 56, 69);
     border: 2px solid rgb(2, 56, 69);
     border-radius: 12%;
+    font-family: "Permanent Marker", cursive;
+    font-family: "Righteous", cursive;
+    letter-spacing: 1px;
 }
 .signup-form label {
     color: rgb(2, 56, 69);

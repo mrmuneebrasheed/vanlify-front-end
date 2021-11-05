@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
 import "./Signup.css";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Signup() {
+    const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -23,12 +25,18 @@ export default function Signup() {
     };
 
     const handleSignup = (e) => {
-        axios.post("/users/signup", {
-            username,
-            email,
-            password,
-            passwordConfirm,
-        });
+        axios
+            .post("/users/signup", {
+                username,
+                email,
+                password,
+                passwordConfirm,
+            })
+            .then((res) => {
+                console.log(res);
+                navigate("/users/profile");
+            })
+            .catch((e) => console.log(e));
     };
     return (
         <>
@@ -37,6 +45,7 @@ export default function Signup() {
                 <h1 className="signup-heading">Signup</h1>
                 <form onSubmit={handleSignup} className="signup-form">
                     <input
+                        autoComplete="off"
                         onChange={usernameChange}
                         type="text"
                         required
@@ -45,6 +54,7 @@ export default function Signup() {
                         value={username}
                     />
                     <input
+                        autoComplete="off"
                         onChange={emailChange}
                         type="email"
                         required
@@ -53,6 +63,7 @@ export default function Signup() {
                         value={email}
                     />
                     <input
+                        autoComplete="off"
                         onChange={passwordChange}
                         type="password"
                         required
@@ -61,6 +72,7 @@ export default function Signup() {
                         value={password}
                     />
                     <input
+                        autoComplete="off"
                         onChange={passwordConfirmChange}
                         type="password"
                         required
@@ -69,9 +81,11 @@ export default function Signup() {
                         value={passwordConfirm}
                     />
 
-                    <button className="submit-button" type="submit">
-                        Submit
-                    </button>
+                    <Link to="/users/profile">
+                        <button className="submit-button" type="submit">
+                            Submit
+                        </button>
+                    </Link>
                 </form>
             </div>
         </>

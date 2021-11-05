@@ -10,18 +10,42 @@ export default function Navbar(props) {
             <span>
                 <img className="logo" src={logo} alt="logo" />
             </span>
+            {props.loggedIn === true && (
+                <div>
+                    <Link className="nav-link" to="/locations/add">
+                        <span>Add a Location</span>
+                    </Link>
+
+                    <Link className="nav-link" to="/locations/explore">
+                        Explore
+                    </Link>
+                </div>
+            )}
             <div className="skew">
                 <h1 className="title">Vanlify</h1>
             </div>
-            {props.signup === false ? (
-                <Link to="/users/signup">
-                    <span className="nav-link">Signup</span>
-                </Link>
-            ) : (
-                <Link to="/">
-                    <span className="nav-link">Home</span>
-                </Link>
-            )}
+            <div>
+                {props.signup === false && !props.loggedIn && (
+                    <Link className="nav-link" to="/users/signup">
+                        <span>Signup</span>
+                    </Link>
+                )}
+                {props.signup === true && !props.loggedIn && (
+                    <Link className="nav-link" to="/">
+                        <span>Home</span>
+                    </Link>
+                )}
+                {props.loggedIn === true && (
+                    <Link className="nav-link" to="/users/profile">
+                        <span>Profile</span>
+                    </Link>
+                )}
+                {props.loggedIn === true && (
+                    <Link className="nav-link" to="/">
+                        <span>Log Out</span>
+                    </Link>
+                )}
+            </div>
         </div>
     );
 }

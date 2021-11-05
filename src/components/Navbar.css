@@ -4,6 +4,8 @@
 }
 .nav {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
     min-height: 10vh;
     width: 99.3%;
     padding: 5px;
@@ -15,16 +17,13 @@
     width: 30%;
     color: #f1ffe7;
     border: 2px double #f1ffe7;
-    justify-self: flex-end;
-    align-self: center;
-    margin-left: 27%;
     transform: skewX(30deg);
     animation: title 1s ease-in-out;
     transition: all 200ms linear;
 }
 .skew:hover {
     background-color: #f1ffe7;
-    color: black;
+    color: rgb(2, 56, 69);
     border: 4px double black;
     transform: scale(1.1) skewX(30deg);
 }
@@ -49,19 +48,23 @@
 .nav-link {
     border: 2px double #f1ffe7;
     color: #f1ffe7;
+    max-width: 50px;
     align-self: center;
-    position: absolute;
-    top: 30px;
-    right: 30px;
+    text-overflow: clip;
+    text-decoration: none;
     padding: 10px 20px;
+    margin: 0 5px;
     border-radius: 15px;
     font-size: 1.3rem;
     transition: all 100ms linear;
 }
 .nav-link:hover {
     background-color: #f1ffe7;
-    color: black;
+    color: rgb(2, 56, 69);
     border: 4px double black;
+    transform: scale(1.2);
+}
+.nav-link span:hover {
     transform: scale(1.2);
 }
 @keyframes title {
