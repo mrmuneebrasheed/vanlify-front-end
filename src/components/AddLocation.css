@@ -1,0 +1,16 @@
+.modal-card {
+    display: flex;
+    flex-direction: column;
+}
+.modal-heading {
+    color: whitesmoke;
+    text-align: center;
+}
+.close-button {
+    padding: 10px;
+    margin: 0 auto;
+    color: rgb(2, 53, 69);
+    background-color: #f1ffe7;
+    border-radius: 10px;
+    cursor: pointer;
+}

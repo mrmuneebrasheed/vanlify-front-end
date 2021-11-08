@@ -4,7 +4,6 @@ import logo from "../assets/img/logo2.png";
 import "./Navbar.css";
 
 export default function Navbar(props) {
-    console.log(props.signup);
     return (
         <div className="nav">
             <span>

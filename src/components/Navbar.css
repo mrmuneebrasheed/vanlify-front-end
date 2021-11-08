@@ -72,6 +72,6 @@
         transform: rotateY(180deg);
     }
     to {
-        transform: rotateX(0deg);
+        transform: rotateX(0deg) skewX(30deg);
     }
 }
