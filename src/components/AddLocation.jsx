@@ -15,14 +15,12 @@ import axios from "axios";
 export default function AddLocation() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [city, setCity] = useState("");
     const [images, SetImages] = useState([]);
-    const [coordinates, setCoordinates] = useState({});
+    const [type, setType] = useState("");
     const [showModal, setShowModal] = useState(false);
     const [coords, setCoords] = useState({});
     const [markers, setMarkers] = useState([]);
-    // const addLocation=()=>{
-    //     axios.post('http://')
-    // }
 
     const onChangeTitle = (e) => {
         setTitle(e.target.value);
@@ -30,11 +28,28 @@ export default function AddLocation() {
     const onChangeDescription = (e) => {
         setDescription(e.target.value);
     };
+    const onChangeType = (e) => {
+        setType(e.target.value);
+    };
+    const onChangeCity = (e) => {
+        setCity(e.target.value);
+    };
     const onChangeImages = (e) => {
         SetImages(e.target.value);
     };
-    const onClickFranceMap = (e) => {};
-
+    const addLocation = () => {
+        axios
+            .post("http://localhost:8000/locations", {
+                title,
+                description,
+                city,
+                type,
+                images,
+                coords,
+            })
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+    };
     function LocationMarker() {
         useEffect(() => {
             if (navigator.geolocation) {
@@ -90,37 +105,70 @@ export default function AddLocation() {
                 >
                     <div className="modal-card">
                         <h1 className="modal-heading">Add a Location</h1>
-                        <form onSubmit={AddLocation} className="signup-form">
-                            <label htmlFor="title">Title</label>
-                            <input
-                                type="text"
-                                name="title"
-                                id="title"
-                                placeholder="Title"
-                            />
-                            <label htmlFor="images">Images</label>
-                            <input
-                                type="file"
-                                name="images"
-                                id="images"
-                                multiple
-                            />
-                            <label htmlFor="city">City</label>
-                            <input
-                                type="text"
-                                name="city"
-                                id="city"
-                                placeholder="City"
-                            />
-                            <label htmlFor="description">Description</label>
-                            <textarea
-                                placeholder="Description"
-                                name="description"
-                                id="description"
-                            />
-                            <button className="submit-button" type="submit">
-                                Submit
-                            </button>
+                        <form
+                            onSubmit={addLocation}
+                            className="add-location-form"
+                        >
+                            <div className="left-bar">
+                                <label htmlFor="title">Title</label>
+                                <input
+                                    onChange={onChangeTitle}
+                                    value={title}
+                                    type="text"
+                                    name="title"
+                                    id="title"
+                                    placeholder="Title"
+                                />
+                                <label htmlFor="description">Description</label>
+                                <textarea
+                                    onChange={onChangeDescription}
+                                    value={description}
+                                    placeholder="Description"
+                                    name="description"
+                                    id="description"
+                                />
+                                <label htmlFor="city">City</label>
+                                <input
+                                    onChange={onChangeCity}
+                                    value={city}
+                                    type="text"
+                                    name="city"
+                                    id="city"
+                                    placeholder="City"
+                                />
+                            </div>
+                            <div className="right-bar">
+                                <label htmlFor="images">Images</label>
+                                <input
+                                    onChange={onChangeImages}
+                                    value={images}
+                                    type="file"
+                                    name="images"
+                                    id="images"
+                                    multiple
+                                />
+                                <label htmlFor="type">Type</label>
+                                <select
+                                    name="type"
+                                    id="type"
+                                    onChange={onChangeType}
+                                    value={type}
+                                >
+                                    <option value="Place to visit">
+                                        Place to visit
+                                    </option>
+                                    <option value="Wilderness">
+                                        Wilderness
+                                    </option>
+                                    <option value="Parking Area">
+                                        Parking Area
+                                    </option>
+                                    <option value="Camping">Camping</option>
+                                </select>
+                                <button className="submit-button" type="submit">
+                                    Submit
+                                </button>
+                            </div>
                         </form>
                         <button
                             className="close-button"
