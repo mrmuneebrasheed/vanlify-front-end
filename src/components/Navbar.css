@@ -18,14 +18,14 @@
     color: #f1ffe7;
     border: 2px double #f1ffe7;
     transform: skewX(30deg);
-    animation: title 1s ease-in-out;
+    animation: title 2s ease-in-out;
     transition: all 200ms linear;
 }
 .skew:hover {
     background-color: #f1ffe7;
     color: rgb(2, 56, 69);
     border: 4px double black;
-    transform: scale(1.1) skewX(30deg);
+    transform: scale(1.2) skewX(30deg);
 }
 .title {
     padding: 5px;

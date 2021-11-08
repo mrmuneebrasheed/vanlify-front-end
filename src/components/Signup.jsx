@@ -33,10 +33,10 @@ export default function Signup() {
                 passwordConfirm,
             })
             .then((res) => {
-                console.log(res);
+                console.log(res.json());
                 navigate("/users/profile");
             })
-            .catch((e) => console.log(e));
+            .catch((e) => console.log("error"));
     };
     return (
         <>

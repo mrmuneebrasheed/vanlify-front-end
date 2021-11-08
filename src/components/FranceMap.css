@@ -2,16 +2,16 @@
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url("../assets/img/HomepageMapBackground.jpg");
     background-size: cover;
-    height: 80vh;
-    width: 50vw;
+    height: 60vh;
+    width: 40vw;
     background-color: whitesmoke;
-    position: absolute;
+    /* position: absolute; */
     border: 2px solid #f0f3ed;
-    transform: translate(85%, -58%);
+    transform: translateY(35%);
     box-shadow: 0 5px 20px 2px whitesmoke;
 }
 .map-container {
-    height: 80%;
+    height: 70%;
     width: 99%;
     margin: auto;
     border: 2px solid black;
