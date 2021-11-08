@@ -12,7 +12,7 @@
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url("../assets/img/LoginBackground.jpg");
     background-size: cover;
-    transform: translateY(40%) translateX(10%);
+    transform: translateY(35%);
     box-shadow: 0 5px 20px 2px whitesmoke;
 }
 .login-heading {

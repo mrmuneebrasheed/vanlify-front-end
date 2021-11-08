@@ -1,7 +1,20 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
+import "./UI/LocationCard";
+import logo from "../assets/img/userImage.jpg";
+import "./ProfilePage.css";
+import LocationCard from "./UI/LocationCard";
 
 export default function ProfilePage() {
+    const [username, setUsername] = useState("");
+    const [myLocations, setMyLocations] = useState([
+        {
+            _id: Math.random(),
+            title: "Lahore",
+            description:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempo",
+        },
+    ]);
     const [city, setCity] = useState("");
     const [bio, setBio] = useState("");
     const [avatar, setAvatar] = useState("");
@@ -17,34 +30,41 @@ export default function ProfilePage() {
     return (
         <>
             <Navbar signup={false} loggedIn={true} />
-            <div>
-                <input
-                    onChange={cityChange}
-                    type="text"
-                    name="city"
-                    placeholder="City"
-                    value={city}
-                />
-                <textarea
-                    onChange={bioChange}
-                    type="text"
-                    name="bio"
-                    placeholder="Bio"
-                    rows="3"
-                    value={bio}
-                />
-                <div>
-                    <label htmlFor="avatar">Avatar</label>
-                    <input
-                        onChange={avatarChange}
-                        type="file"
-                        name="avatar"
-                        id="avatar"
-                        value={avatar}
-                    />
+            <div className="profile-section">
+                <div className="profile-card">
+                    <h1 className="profile-heading">Profile</h1>
+                    <div className="avatar">
+                        <div>
+                            <img
+                                src={avatar ? require(avatar) : logo}
+                                alt="avatar"
+                            />
+                            <button>Modify Avatar</button>
+                        </div>
+                        <span>{username ? username : "username"}</span>
+                        <button className="modify-profile">
+                            Modify Profile
+                        </button>
+                    </div>
+                    <p className="city">{city ? city : "City"}</p>
+                    <p className="bio">
+                        {bio
+                            ? bio
+                            : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud"}
+                    </p>
+                </div>
+                <div className="my-locations">
+                    <h1 className="location-heading">My locations</h1>
+                    {myLocations?.map((location) => (
+                        <LocationCard
+                            key={location._id}
+                            id={location._id}
+                            title={location.title}
+                            description={location.description}
+                        />
+                    ))}
                 </div>
             </div>
-            <div></div>
         </>
     );
 }
