@@ -13,12 +13,28 @@ import {
 import axios from "axios";
 
 export default function AddLocation() {
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [images, SetImages] = useState([]);
+    const [coordinates, setCoordinates] = useState({});
     const [showModal, setShowModal] = useState(false);
     const [coords, setCoords] = useState({});
     const [markers, setMarkers] = useState([]);
     // const addLocation=()=>{
     //     axios.post('http://')
     // }
+
+    const onChangeTitle = (e) => {
+        setTitle(e.target.value);
+    };
+    const onChangeDescription = (e) => {
+        setDescription(e.target.value);
+    };
+    const onChangeImages = (e) => {
+        SetImages(e.target.value);
+    };
+    const onClickFranceMap = (e) => {};
+
     function LocationMarker() {
         useEffect(() => {
             if (navigator.geolocation) {
