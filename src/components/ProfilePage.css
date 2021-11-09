@@ -44,11 +44,11 @@
 .my-locations {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
-    min-height: 50vh;
+    max-height: 60vh;
     width: 30%;
-    overflow-y: auto;
+    overflow-y: scroll;
     padding: 20px;
     border-radius: 15px;
     box-shadow: 0 0 5px 2px rgba(245, 245, 245, 0.521);
@@ -100,10 +100,6 @@
     border-radius: 50%;
 }
 .avatar > span {
-    color: whitesmoke;
-    padding: 10px;
-    border: 2px solid whitesmoke;
-    border-radius: 10px;
 }
 .bio {
     width: 90%;
@@ -130,4 +126,11 @@
 }
 .modify-profile:hover {
     transform: scale(1.1);
+}
+.username {
+    color: whitesmoke;
+    padding: 10px;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
+    margin: 10px 10px 0 0;
 }

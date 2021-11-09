@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Navbar from "./Navbar";
 import Modal from "react-modal";
+import _ from "lodash";
 import "./AddLocation.css";
 import {
     MapContainer,
@@ -12,14 +13,18 @@ import {
 } from "react-leaflet";
 import axios from "axios";
 
-export default function AddLocation() {
+export default function AddLocation({ userID, setUserID }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [userId, setUserId] = useState(
+        userID ? userID : localStorage.getItem("userId")
+    );
+    const [username, setUsername] = useState("");
     const [city, setCity] = useState("");
     const [images, SetImages] = useState([]);
     const [type, setType] = useState("");
     const [showModal, setShowModal] = useState(false);
-    const [coords, setCoords] = useState({});
+    const [coordinates, setCoords] = useState({});
     const [markers, setMarkers] = useState([]);
 
     const onChangeTitle = (e) => {
@@ -35,21 +40,34 @@ export default function AddLocation() {
         setCity(e.target.value);
     };
     const onChangeImages = (e) => {
-        SetImages(e.target.value);
+        SetImages([...e.target.files]);
     };
-    const addLocation = () => {
+    const addLocation = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("city", city);
+        formData.append("type", type);
+        formData.append("coordinates", coordinates);
+        formData.append("userId", userId);
+        formData.append("username", username);
+        images?.forEach((image) => {
+            formData.append("images", image);
+        });
         axios
-            .post("http://localhost:8000/locations", {
-                title,
-                description,
-                city,
-                type,
-                images,
-                coords,
-            })
+            .post("http://localhost:8000/locations/add", formData)
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
+        setShowModal(false);
     };
+    if (
+        localStorage.getItem("userId") === "" ||
+        (userID && localStorage.getItem("userId") !== userID)
+    ) {
+        localStorage.setItem("userId", userID);
+        setUserId(localStorage.getItem("userId"));
+    }
     function LocationMarker() {
         useEffect(() => {
             if (navigator.geolocation) {
@@ -92,6 +110,16 @@ export default function AddLocation() {
             borderRadius: "20px",
         },
     };
+    useEffect(() => {
+        axios
+            .get(`http://localhost:8000/users/${userId}`)
+            .then((res) => {
+                console.log(res);
+                const { user } = res.data;
+                setUsername(user.username ? user.username : "Username");
+            })
+            .catch((err) => console.log(err.response));
+    }, []);
     return (
         <div>
             <Navbar loggedIn={true} />
@@ -141,7 +169,6 @@ export default function AddLocation() {
                                 <label htmlFor="images">Images</label>
                                 <input
                                     onChange={onChangeImages}
-                                    value={images}
                                     type="file"
                                     name="images"
                                     id="images"

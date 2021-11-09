@@ -9,6 +9,8 @@ export default function ModifyProfileModal({
     usernameChange,
     email,
     emailChange,
+    city,
+    cityChange,
     password,
     passwordChange,
     bio,
@@ -48,6 +50,14 @@ export default function ModifyProfileModal({
                     name="password"
                     placeholder="password"
                     value={password}
+                />
+                <input
+                    onChange={cityChange}
+                    type="text"
+                    name="city"
+                    id="city"
+                    placeholder="City"
+                    value={city}
                 />
                 <textarea
                     onChange={bioChange}

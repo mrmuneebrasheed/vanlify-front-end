@@ -18,6 +18,7 @@ export default function ProfilePage({ userID, setUserID }) {
     const [city, setCity] = useState("");
     const [bio, setBio] = useState("");
     const [avatar, setAvatar] = useState("");
+    const [image, setImage] = useState("");
     const [myLocations, setMyLocations] = useState([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [showAvatarModal, setShowAvatarModal] = useState(false);
@@ -36,6 +37,9 @@ export default function ProfilePage({ userID, setUserID }) {
     };
     const passwordChange = (e) => {
         setPassword(e.target.value);
+    };
+    const imageChange = (e) => {
+        setImage(...e.target.files);
     };
     useEffect(() => {
         getUser(userId);
@@ -56,7 +60,6 @@ export default function ProfilePage({ userID, setUserID }) {
                 }`
             )
             .then((res) => {
-                console.log(res);
                 const { user } = res.data;
                 console.log(user);
                 setUsername(user.username ? user.username : "Username");
@@ -77,24 +80,30 @@ export default function ProfilePage({ userID, setUserID }) {
             setMyLocations(res.data.locations);
         });
     };
-    const modifyProfile = () => {
+    const modifyProfile = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("username", username);
+        formData.append("email", email);
+        formData.append("password", password);
+        formData.append("bio", bio);
+        formData.append("city", city);
         axios
-            .put(`http://localhost:8000/users/${userId}`, {
-                username,
-                email,
-                password,
-                bio,
-                city,
-            })
+            .put(`http://localhost:8000/users/${userId}`, formData)
             .then((res) => {
                 console.log(res);
             })
             .catch((e) => console.log("error:", e));
+        setShowProfileModal(false);
     };
-    const modifyAvatar = () => {
+    const modifyAvatar = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("image", image);
         axios
-            .put(`http://localhost:8000/users/avatar/${userId}`)
+            .put(`http://localhost:8000/users/avatar/${userId}`, formData)
             .then((res) => console.log(res));
+        setShowAvatarModal(false);
     };
     const customStyles = {
         content: {
@@ -108,7 +117,6 @@ export default function ProfilePage({ userID, setUserID }) {
             borderRadius: "20px",
         },
     };
-
     return (
         <>
             <Navbar signup={false} loggedIn={true} />
@@ -137,21 +145,36 @@ export default function ProfilePage({ userID, setUserID }) {
                     >
                         <form className="signup-form" onSubmit={modifyAvatar}>
                             <label htmlFor="avatar">Avatar</label>
-                            <input type="file" name="avatar" id="avatar" />
+                            <input
+                                onChange={imageChange}
+                                type="file"
+                                name="avatar"
+                                id="avatar"
+                            />
+                            <button type="submit">Submit</button>
                         </form>
                     </Modal>
                     <h1 className="profile-heading">Profile</h1>
                     <div className="avatar">
                         <div>
                             <img
-                                src={avatar ? require(avatar) : logo}
+                                src={
+                                    logo
+                                    // avatar
+                                    //     ? require(`http://localhost:8000/${avatar}`)
+                                    //     : logo
+                                }
                                 alt="avatar"
                             />
-                            <button onClick={() => setShowAvatarModal(true)}>
-                                Modify Avatar
-                            </button>
+                            <span className="username">{username}</span>
                         </div>
-                        <span>{username}</span>
+
+                        <button
+                            className="modify-profile"
+                            onClick={() => setShowAvatarModal(true)}
+                        >
+                            Modify Avatar
+                        </button>
                         <button
                             onClick={() => setShowProfileModal(true)}
                             className="modify-profile"
