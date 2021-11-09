@@ -159,10 +159,8 @@ export default function ProfilePage({ userID, setUserID }) {
                         <div>
                             <img
                                 src={
-                                    logo
-                                    // avatar
-                                    //     ? require(`http://localhost:8000/${avatar}`)
-                                    //     : logo
+                                    logo && logo
+                                    // : require(`http://localhost:8000${avatar}`)
                                 }
                                 alt="avatar"
                             />

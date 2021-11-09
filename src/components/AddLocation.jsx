@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header";
 import Navbar from "./Navbar";
 import Modal from "react-modal";
-import _ from "lodash";
 import "./AddLocation.css";
 import {
     MapContainer,
@@ -68,17 +67,18 @@ export default function AddLocation({ userID, setUserID }) {
         localStorage.setItem("userId", userID);
         setUserId(localStorage.getItem("userId"));
     }
+
+    useEffect(() => {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((e) =>
+                setMarkers([
+                    ...markers,
+                    [e.coords.latitude, e.coords.longitude],
+                ])
+            );
+        }
+    }, []);
     function LocationMarker() {
-        useEffect(() => {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((e) =>
-                    setMarkers([
-                        ...markers,
-                        [e.coords.latitude, e.coords.longitude],
-                    ])
-                );
-            }
-        }, []);
         useMapEvents({
             click(e) {
                 // console.log(e.latlng.lat, e.latlng.lng);

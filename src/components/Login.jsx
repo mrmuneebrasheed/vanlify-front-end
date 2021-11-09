@@ -30,7 +30,7 @@ export default function Login({ userID, setUserID }) {
             })
             .catch((err) => {
                 console.log(err.response);
-                setModalMessage(err.response.message);
+                setModalMessage(err.response.error);
                 setShowModal(true);
             });
     };

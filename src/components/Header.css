@@ -4,14 +4,15 @@
 .header {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     width: 98%;
     margin: 20px auto;
-    border: 2px double whitesmoke;
-    box-shadow: 0 5px 10px 2px whitesmoke;
+    /* border: 2px double whitesmoke; */
+    /* box-shadow: 0 5px 10px 2px whitesmoke; */
     border-radius: 20px;
-    min-height: 30vh;
-    background: linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-        url("../assets/img/AppBackground1.jpg");
+    min-height: 50vh;
+    /* background: linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        url("../assets/img/AppBackground1.jpg"); */
     background-size: cover;
     background-position-y: -400px;
     filter: blur(10);

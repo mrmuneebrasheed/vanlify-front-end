@@ -1,19 +1,19 @@
 .profile-section {
     display: flex;
     justify-content: space-around;
-    width: 90%;
+    /* width: 90%; */
     margin: 20px auto;
-    box-shadow: 0 0 10px 2px rgba(172, 172, 172, 0.808);
+    /* box-shadow: 0 0 10px 2px rgba(172, 172, 172, 0.808); */
     border-radius: 20px;
-    background: linear-gradient(rgb(0, 0, 0, 0.2), rgb(0, 0, 0, 0.2)),
-        url("../assets/img/AppBackground1.jpg");
+    /* background: linear-gradient(rgb(0, 0, 0, 0.2), rgb(0, 0, 0, 0.2)); */
+    /* url("../assets/img/AppBackground1.jpg"); */
     background-size: cover;
-    background-position-y: -300px;
+    /* background-position-y: -300px; */
     animation: profile-section 1s ease-out;
 }
 @keyframes profile-section {
     from {
-        transform: translateY(50%);
+        transform: translateY(40%);
         opacity: 0;
     }
     to {
@@ -32,14 +32,14 @@
     padding: 20px;
     box-shadow: 0 0 5px 2px rgba(245, 245, 245, 0.507);
 
-    background: linear-gradient(rgb(0, 0, 0, 0.6), rgb(0, 0, 0, 0.6)),
-        url("../assets/img/LoginBackground.jpg");
+    background: linear-gradient(rgb(0, 0, 0, 0.8), rgb(0, 0, 0, 0.8));
+    /* url("../assets/img/LoginBackground.jpg"); */
     background-size: cover;
-    transform: translateY(30%);
+    transform: translateY(10%);
     transition: all 200ms ease-out;
 }
 .profile-card:hover {
-    transform: translateY(30%) scale(1.1);
+    transform: translateY(10%) scale(1.1);
 }
 .my-locations {
     display: flex;
@@ -48,18 +48,19 @@
     align-items: center;
     max-height: 60vh;
     width: 30%;
-    overflow-y: scroll;
+    overflow-y: auto;
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 0 5px 2px rgba(245, 245, 245, 0.521);
-    background: linear-gradient(rgb(0, 0, 0, 0.6), rgb(0, 0, 0, 0.6)),
-        url("../assets/img/HomepageMapBackground.jpg");
+    border: 2px solid whitesmoke;
+    /* box-shadow: 0 0 5px 2px rgba(245, 245, 245, 0.521); */
+    background: linear-gradient(rgb(0, 0, 0, 0.6), rgb(0, 0, 0, 0.6));
+    /* url("../assets/img/HomepageMapBackground.jpg"); */
     background-size: cover;
-    transform: translateY(30%);
+    transform: translateY(10%);
     transition: all 200ms ease-out;
 }
 .my-locations:hover {
-    transform: translateY(30%) scale(1.1);
+    transform: translateY(10%) scale(1.1);
 }
 .profile-heading {
     width: 30%;
@@ -121,6 +122,8 @@
     background-color: rgb(2, 56, 69);
     color: whitesmoke;
     border: 2px solid whitesmoke;
+    border: 2px solid whitesmoke;
+    border-radius: 10px;
     cursor: pointer;
     transition: all 200ms ease-out;
 }

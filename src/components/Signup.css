@@ -12,6 +12,7 @@
     border-radius: 10%;
     background: linear-gradient(rgb(0, 0, 0, 0.4), rgb(0, 0, 0, 0.4)),
         url("../assets/img/LoginBackground.jpg");
+    background: transparent;
     background-size: cover;
     box-shadow: 0 5px 20px 2px whitesmoke;
     animation: animation 1s ease-out;

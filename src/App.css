@@ -3,10 +3,10 @@
 }
 .App {
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-        url("./assets/img/headerBackground.jpg");
+        url("./assets/img/AppBackground1.jpg");
     background-size: cover;
     background-position-y: -100px;
-    min-height: 120vh;
+    min-height: 100vh;
 }
 
 .App-header {

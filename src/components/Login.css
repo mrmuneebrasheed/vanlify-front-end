@@ -9,11 +9,15 @@
     border: 2px solid #f1ffe0;
     border-radius: 20px;
     padding: 20px;
-    background: linear-gradient(45deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url("../assets/img/LoginBackground.jpg");
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8));
+    /* url("../assets/img/LoginBackground.jpg"); */
     background-size: cover;
-    transform: translateY(35%);
-    box-shadow: 0 5px 20px 2px whitesmoke;
+    transform: translateY(20%);
+    /* box-shadow: 0 5px 20px 2px whitesmoke; */
+    transition: all 200ms ease-out;
+}
+.login:hover {
+    transform: scale(1.1) translateY(20%);
 }
 .login-heading {
     width: 30%;
@@ -30,11 +34,13 @@
 }
 
 input {
+    background: transparent;
     padding: 10px;
     margin: 5px auto;
     width: 60%;
-    border: 2px solid black;
-    border-radius: 20%;
+    color: whitesmoke;
+    border: 2px solid rgb(255, 255, 255);
+    border-radius: 5px;
     transition: all 200ms ease-out;
 }
 input:focus {

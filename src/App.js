@@ -6,6 +6,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ProfilePage from "./components/ProfilePage";
 import AddLocation from "./components/AddLocation";
 import Error404 from "./components/Error404";
+import Explore from "./components/Explore";
+import LocationsPage from "./components/LocationsPage";
 
 function App() {
     const [userID, setUserID] = useState("");
@@ -43,6 +45,16 @@ function App() {
                                 setUserID={setUserID}
                             />
                         }
+                    ></Route>
+                    <Route
+                        path="/locations/explore"
+                        element={
+                            <Explore userID={userID} setUserID={setUserID} />
+                        }
+                    ></Route>
+                    <Route
+                        path="/locations/explore/types/:type"
+                        element={<LocationsPage />}
                     ></Route>
                     <Route path="*" element={<Error404 />}></Route>
                 </Routes>

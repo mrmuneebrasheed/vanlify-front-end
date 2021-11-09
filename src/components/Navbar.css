@@ -9,27 +9,28 @@
     min-height: 10vh;
     width: 99.3%;
     padding: 5px;
-    background: linear-gradient(rgba(0, 0, 0, 0.8), rgb(2, 56, 69));
+    /* background: linear-gradient(rgba(0, 0, 0, 0.8), rgb(2, 56, 69)); */
+    background: linear-gradient(rgb(0, 0, 0, 0.4), rgb(0, 0, 0, 0.5));
     border-bottom: 2px double whitesmoke;
 }
 .skew {
     height: 80%;
     width: 30%;
     color: #f1ffe7;
-    border: 2px double #f1ffe7;
-    transform: skewX(30deg);
+    /* border: 2px double #f1ffe7; */
+    /* transform: skewX(30deg); */
     animation: title 2s ease-in-out;
     transition: all 200ms linear;
 }
 .skew:hover {
-    background-color: #f1ffe7;
-    color: rgb(2, 56, 69);
-    border: 4px double black;
-    transform: scale(1.2) skewX(30deg);
+    /* background-color: #f1ffe7; */
+    /* color: rgb(2, 56, 69); */
+    /* border-bottom: 4px solid whitesmoke; */
+    transform: scale(1.5);
 }
 .title {
     padding: 5px;
-    transform: skewX(-30deg);
+    /* transform: skewX(-30deg); */
     text-align: center;
     font-family: "Permanent Marker", cursive;
     letter-spacing: 2px;
@@ -46,7 +47,6 @@
     transform: rotate(10deg) scale(1.2);
 }
 .nav-link {
-    border: 2px double #f1ffe7;
     color: #f1ffe7;
     max-width: 50px;
     align-self: center;
@@ -54,15 +54,14 @@
     text-decoration: none;
     padding: 10px 20px;
     margin: 0 5px;
-    border-radius: 15px;
+    /* border-radius: 15px; */
     font-size: 1.3rem;
     transition: all 100ms linear;
 }
 .nav-link:hover {
-    background-color: #f1ffe7;
-    color: rgb(2, 56, 69);
-    border: 4px double black;
-    transform: scale(1.2);
+    /* background-color: #f1ffe7; */
+    /* color: rgb(2, 56, 69); */
+    border-bottom: 2px solid whitesmoke;
 }
 .nav-link span:hover {
     transform: scale(1.2);
