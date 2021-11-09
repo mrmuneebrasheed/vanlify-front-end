@@ -1,0 +1,228 @@
+import React, { useState, useEffect } from "react";
+import Header from "./Header";
+import Navbar from "./Navbar";
+import Modal from "react-modal";
+import _ from "lodash";
+import "./AddLocation.css";
+import {
+    MapContainer,
+    TileLayer,
+    Marker,
+    Popup,
+    useMapEvents,
+} from "react-leaflet";
+import axios from "axios";
+
+export default function AddLocation({ userID, setUserID }) {
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [userId, setUserId] = useState(
+        userID ? userID : localStorage.getItem("userId")
+    );
+    const [username, setUsername] = useState("");
+    const [city, setCity] = useState("");
+    const [images, SetImages] = useState([]);
+    const [type, setType] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const [coordinates, setCoords] = useState({});
+    const [markers, setMarkers] = useState([]);
+
+    const onChangeTitle = (e) => {
+        setTitle(e.target.value);
+    };
+    const onChangeDescription = (e) => {
+        setDescription(e.target.value);
+    };
+    const onChangeType = (e) => {
+        setType(e.target.value);
+    };
+    const onChangeCity = (e) => {
+        setCity(e.target.value);
+    };
+    const onChangeImages = (e) => {
+        SetImages([...e.target.files]);
+    };
+    const addLocation = (e) => {
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append("title", title);
+        formData.append("description", description);
+        formData.append("city", city);
+        formData.append("type", type);
+        formData.append("coordinates", coordinates);
+        formData.append("userId", userId);
+        formData.append("username", username);
+        images?.forEach((image) => {
+            formData.append("images", image);
+        });
+        axios
+            .post("http://localhost:8000/locations/add", formData)
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+        setShowModal(false);
+    };
+    if (
+        localStorage.getItem("userId") === "" ||
+        (userID && localStorage.getItem("userId") !== userID)
+    ) {
+        localStorage.setItem("userId", userID);
+        setUserId(localStorage.getItem("userId"));
+    }
+    function LocationMarker() {
+        useEffect(() => {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition((e) =>
+                    setMarkers([
+                        ...markers,
+                        [e.coords.latitude, e.coords.longitude],
+                    ])
+                );
+            }
+        }, []);
+        useMapEvents({
+            click(e) {
+                // console.log(e.latlng.lat, e.latlng.lng);
+                setMarkers([...markers, [e.latlng.lat, e.latlng.lng]]);
+                setCoords({ lat: e.latlng.lat, lng: e.latlng.lng });
+                setShowModal(true);
+            },
+        });
+
+        return markers === []
+            ? null
+            : markers.map((coords) => (
+                  <Marker key={Math.random()} position={coords}>
+                      <Popup>
+                          <p>Hello</p>
+                      </Popup>
+                  </Marker>
+              ));
+    }
+    const customStyles = {
+        content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "rgb(2, 56, 69)",
+            borderRadius: "20px",
+        },
+    };
+    useEffect(() => {
+        axios
+            .get(`http://localhost:8000/users/${userId}`)
+            .then((res) => {
+                console.log(res);
+                const { user } = res.data;
+                setUsername(user.username ? user.username : "Username");
+            })
+            .catch((err) => console.log(err.response));
+    }, []);
+    return (
+        <div>
+            <Navbar loggedIn={true} />
+            <Header>
+                <Modal
+                    style={customStyles}
+                    isOpen={showModal}
+                    onRequestClose={() => {
+                        setShowModal(false);
+                    }}
+                >
+                    <div className="modal-card">
+                        <h1 className="modal-heading">Add a Location</h1>
+                        <form
+                            onSubmit={addLocation}
+                            className="add-location-form"
+                        >
+                            <div className="left-bar">
+                                <label htmlFor="title">Title</label>
+                                <input
+                                    onChange={onChangeTitle}
+                                    value={title}
+                                    type="text"
+                                    name="title"
+                                    id="title"
+                                    placeholder="Title"
+                                />
+                                <label htmlFor="description">Description</label>
+                                <textarea
+                                    onChange={onChangeDescription}
+                                    value={description}
+                                    placeholder="Description"
+                                    name="description"
+                                    id="description"
+                                />
+                                <label htmlFor="city">City</label>
+                                <input
+                                    onChange={onChangeCity}
+                                    value={city}
+                                    type="text"
+                                    name="city"
+                                    id="city"
+                                    placeholder="City"
+                                />
+                            </div>
+                            <div className="right-bar">
+                                <label htmlFor="images">Images</label>
+                                <input
+                                    onChange={onChangeImages}
+                                    type="file"
+                                    name="images"
+                                    id="images"
+                                    multiple
+                                />
+                                <label htmlFor="type">Type</label>
+                                <select
+                                    name="type"
+                                    id="type"
+                                    onChange={onChangeType}
+                                    value={type}
+                                >
+                                    <option value="Place to visit">
+                                        Place to visit
+                                    </option>
+                                    <option value="Wilderness">
+                                        Wilderness
+                                    </option>
+                                    <option value="Parking Area">
+                                        Parking Area
+                                    </option>
+                                    <option value="Camping">Camping</option>
+                                </select>
+                                <button className="submit-button" type="submit">
+                                    Submit
+                                </button>
+                            </div>
+                        </form>
+                        <button
+                            className="close-button"
+                            onClick={() => setShowModal(false)}
+                        >
+                            Close
+                        </button>
+                    </div>
+                </Modal>
+                <div className="map-homepage">
+                    <MapContainer
+                        className="map-container"
+                        center={[48.8450326, 2.3997593]}
+                        zoom={13}
+                        scrollWheelZoom={true}
+                    >
+                        <TileLayer
+                            attribution='&copy; <a href="https://api.maptiler.com/maps/topo/tiles.json?key=6VtA7Ctgi6GFUAkKgZPz'
+                            url="https://api.maptiler.com/maps/topo/{z}/{x}/{y}.png?key=6VtA7Ctgi6GFUAkKgZPz"
+                        />
+                        <LocationMarker />
+                    </MapContainer>
+                    <p className="map-description">
+                        3000 places Found, Login to see the details
+                    </p>
+                </div>
+            </Header>
+        </div>
+    );
+}

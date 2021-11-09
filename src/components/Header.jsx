@@ -1,13 +1,6 @@
 import React from "react";
-import FranceMap from "./FranceMap";
 import "./Header.css";
-import Login from "./Login";
 
-export default function Header() {
-    return (
-        <div className="header">
-            <Login />
-            <FranceMap />
-        </div>
-    );
+export default function Header({ userID, setUserID, children }) {
+    return <div className="header">{children}</div>;
 }

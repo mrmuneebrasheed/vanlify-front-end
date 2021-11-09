@@ -4,7 +4,7 @@ import Modal from "react-modal";
 import "./Login.css";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ userID, setUserID }) {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const navigate = useNavigate();
@@ -25,11 +25,12 @@ export default function Login() {
             })
             .then((res) => {
                 console.log(res);
+                setUserID(res.data.userId);
                 navigate("/users/profile");
             })
             .catch((err) => {
                 console.log(err.response);
-                setModalMessage(err.response.data.error);
+                setModalMessage(err.response.message);
                 setShowModal(true);
             });
     };
