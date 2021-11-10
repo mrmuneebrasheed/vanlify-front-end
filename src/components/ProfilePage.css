@@ -137,3 +137,19 @@
     border-radius: 10px;
     margin: 10px 10px 0 0;
 }
+
+@media (max-width: 1000px) {
+    .profile-section {
+        flex-direction: column;
+        width: 90%;
+        align-items: center;
+    }
+    .profile-card {
+        width: 70%;
+        margin-bottom: 20px;
+    }
+    .my-locations {
+        width: 70%;
+        margin-top: 10px;
+    }
+}

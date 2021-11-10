@@ -72,3 +72,20 @@ select option {
     border: 2px solid rgb(2, 56, 69);
     border-radius: 20px;
 }
+@media (max-width: 1000px) {
+    .submit-button {
+        width: 80%;
+    }
+    input,
+    textarea {
+        width: 80%;
+    }
+    input[type="file"] {
+        width: 50%;
+    }
+    .map-homepage {
+        width: 60%;
+        height: 70vh;
+        transform: translateY(10%);
+    }
+}

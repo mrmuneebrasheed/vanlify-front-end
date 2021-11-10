@@ -19,7 +19,7 @@ export default function AddLocation({ userID, setUserID }) {
         userID ? userID : localStorage.getItem("userId")
     );
     const [username, setUsername] = useState("");
-    const [city, setCity] = useState("");
+    const [address, setAddress] = useState("");
     const [images, SetImages] = useState([]);
     const [type, setType] = useState("");
     const [showModal, setShowModal] = useState(false);
@@ -35,8 +35,8 @@ export default function AddLocation({ userID, setUserID }) {
     const onChangeType = (e) => {
         setType(e.target.value);
     };
-    const onChangeCity = (e) => {
-        setCity(e.target.value);
+    const onChangeAddress = (e) => {
+        setAddress(e.target.value);
     };
     const onChangeImages = (e) => {
         SetImages([...e.target.files]);
@@ -46,9 +46,10 @@ export default function AddLocation({ userID, setUserID }) {
         const formData = new FormData();
         formData.append("title", title);
         formData.append("description", description);
-        formData.append("city", city);
+        formData.append("address", address);
         formData.append("type", type);
-        formData.append("coordinates", coordinates);
+        console.log(typeof coordinates, coordinates);
+        formData.append("coordinates", JSON.stringify(coordinates));
         formData.append("userId", userId);
         formData.append("username", username);
         images?.forEach((image) => {
@@ -155,14 +156,14 @@ export default function AddLocation({ userID, setUserID }) {
                                     name="description"
                                     id="description"
                                 />
-                                <label htmlFor="city">City</label>
+                                <label htmlFor="address">address</label>
                                 <input
-                                    onChange={onChangeCity}
-                                    value={city}
+                                    onChange={onChangeAddress}
+                                    value={address}
                                     type="text"
-                                    name="city"
-                                    id="city"
-                                    placeholder="City"
+                                    name="address"
+                                    id="address"
+                                    placeholder="address"
                                 />
                             </div>
                             <div className="right-bar">
@@ -176,11 +177,15 @@ export default function AddLocation({ userID, setUserID }) {
                                 />
                                 <label htmlFor="type">Type</label>
                                 <select
+                                    required
                                     name="type"
                                     id="type"
                                     onChange={onChangeType}
                                     value={type}
                                 >
+                                    <option value="" disabled>
+                                        Select a Type
+                                    </option>
                                     <option value="Place to visit">
                                         Place to visit
                                     </option>

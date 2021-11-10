@@ -1,26 +1,30 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { useParams } from "react-router-dom";
-import {
-    MapContainer,
-    TileLayer,
-    Marker,
-    Popup,
-    useMapEvents,
-} from "react-leaflet";
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import axios from "axios";
+import Modal from "react-modal";
 
 export default function LocationsPage(props) {
     const { type } = useParams();
     const [locations, setLocations] = useState([]);
     const [markers, setMarkers] = useState([]);
+    const [showModal, setShowModal] = useState(false);
     useEffect(() => {
-        axios.get("http://localhost:8000/locations/all").then((res) => {
+        axios.get(`http://localhost:8000/locations/${type}`).then((res) => {
             setLocations(res.data.locations);
             console.log(res.data.locations);
         });
     }, []);
     const LocationMarker = () => {
+        const coordinates = [];
+        locations.forEach((location) =>
+            coordinates.push([
+                location.coordinates.lat,
+                location.coordinates.lng,
+            ])
+        );
+        console.log(coordinates);
         return locations === []
             ? null
             : locations.map((location) => (
@@ -30,10 +34,12 @@ export default function LocationsPage(props) {
                           location.coordinates.lng || 2.0,
                       ]}
                   >
-                      <Popup minWidth="200px">
+                      <Popup className="pop-up">
                           <h3>{location.title}</h3>
                           <p>{location.description}</p>
-                          <button>Details</button>
+                          <button onClick={() => setShowModal(true)}>
+                              Details
+                          </button>
                       </Popup>
                   </Marker>
               ));
@@ -57,6 +63,10 @@ export default function LocationsPage(props) {
                         />
                         {LocationMarker()}
                     </MapContainer>
+                    <Modal
+                        isOpen={showModal}
+                        onRequestClose={() => setShowModal(false)}
+                    ></Modal>
                     <p className="map-description">
                         3000 places Found, Login to see the details
                     </p>

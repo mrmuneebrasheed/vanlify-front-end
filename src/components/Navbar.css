@@ -11,7 +11,7 @@
     padding: 5px;
     /* background: linear-gradient(rgba(0, 0, 0, 0.8), rgb(2, 56, 69)); */
     background: linear-gradient(rgb(0, 0, 0, 0.4), rgb(0, 0, 0, 0.5));
-    border-bottom: 2px double whitesmoke;
+    /* border-bottom: 2px double whitesmoke; */
 }
 .skew {
     height: 80%;
@@ -72,5 +72,13 @@
     }
     to {
         transform: rotateX(0deg) skewX(30deg);
+    }
+}
+@media (max-width: 1000px) {
+    .nav-link {
+        font-size: 1rem;
+        padding: 10px;
+        border: 2px solid whitesmoke;
+        border-radius: 10px;
     }
 }
