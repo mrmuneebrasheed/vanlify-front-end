@@ -3,28 +3,36 @@ import Navbar from "./Navbar";
 import { useParams } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import axios from "axios";
-import Modal from "react-modal";
+
+import "./LocationsPage.css";
+
+import "react-slideshow-image/dist/styles.css";
+import LocationModal from "./LocationModal";
 
 export default function LocationsPage(props) {
     const { type } = useParams();
     const [locations, setLocations] = useState([]);
-    const [markers, setMarkers] = useState([]);
+    const [currentLocationId, setCurrentLocationId] = useState("");
+    const [currentLocation, setCurrentLocation] = useState({});
+    const [slideImages, setSlideImages] = useState([]);
     const [showModal, setShowModal] = useState(false);
     useEffect(() => {
-        axios.get(`http://localhost:8000/locations/${type}`).then((res) => {
-            setLocations(res.data.locations);
-            console.log(res.data.locations);
-        });
-    }, []);
+        axios
+            .get(`http://localhost:8000/locations/type/${type}`)
+            .then((res) => {
+                setLocations(res.data.locations);
+            })
+            .catch((err) => console.log(err));
+        axios
+            .get(`http://localhost:8000/locations/${currentLocationId}`)
+            .then((res) => {
+                console.log(res);
+                setCurrentLocation(res.data.location);
+                setSlideImages(res.data.location.images);
+            })
+            .catch((err) => console.log(err));
+    }, [currentLocationId]);
     const LocationMarker = () => {
-        const coordinates = [];
-        locations.forEach((location) =>
-            coordinates.push([
-                location.coordinates.lat,
-                location.coordinates.lng,
-            ])
-        );
-        console.log(coordinates);
         return locations === []
             ? null
             : locations.map((location) => (
@@ -36,25 +44,29 @@ export default function LocationsPage(props) {
                   >
                       <Popup className="pop-up">
                           <h3>{location.title}</h3>
-                          <p>{location.description}</p>
-                          <button onClick={() => setShowModal(true)}>
+                          <p>{location.address}</p>
+                          <button
+                              onClick={() => {
+                                  setCurrentLocationId(location._id);
+                                  setShowModal(true);
+                              }}
+                          >
                               Details
                           </button>
                       </Popup>
                   </Marker>
               ));
     };
-    console.log(markers);
+    console.log(currentLocation);
     return (
         <div>
             <Navbar loggedIn={true}></Navbar>
-            <h1>{type}</h1>
             <div className="container">
                 <div className="map-homepage">
                     <MapContainer
                         className="map-container"
-                        center={[48.8450326, 2.3997593]}
-                        zoom={13}
+                        center={[46.8450326, 2.3997593]}
+                        zoom={5}
                         scrollWheelZoom={true}
                     >
                         <TileLayer
@@ -63,12 +75,15 @@ export default function LocationsPage(props) {
                         />
                         {LocationMarker()}
                     </MapContainer>
-                    <Modal
-                        isOpen={showModal}
-                        onRequestClose={() => setShowModal(false)}
-                    ></Modal>
+                    <LocationModal
+                        showModal={showModal}
+                        setShowModal={() => setShowModal(false)}
+                        currentLocation={currentLocation}
+                        slideImages={slideImages}
+                    />
                     <p className="map-description">
-                        3000 places Found, Login to see the details
+                        <span>{locations.length}</span> places Found, Click on
+                        Pop up to explore the details
                     </p>
                 </div>
             </div>

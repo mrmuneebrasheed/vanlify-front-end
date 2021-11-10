@@ -32,7 +32,10 @@ textarea {
     margin: 5px auto;
     width: 60%;
     border: 2px solid black;
-    border-radius: 20%;
+    border-radius: 30px;
+}
+textarea::placeholder {
+    color: grey;
 }
 .signup-heading {
     width: 30%;
@@ -58,7 +61,7 @@ textarea {
 }
 input[type="file"] {
     background-color: whitesmoke;
-    width: 40%;
+    width: 30px;
 }
 
 @keyframes animation {

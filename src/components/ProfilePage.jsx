@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import "./UI/LocationCard";
-import logo from "../assets/img/userImage.jpg";
 import "./ProfilePage.css";
 import LocationCard from "./UI/LocationCard";
 import axios from "axios";
 import Modal from "react-modal";
 import ModifyProfileModal from "./ModifyProfileModal";
+import LocationModal from "./LocationModal";
 
 export default function ProfilePage({ userID, setUserID }) {
     const [userId, setUserId] = useState(
@@ -22,6 +22,13 @@ export default function ProfilePage({ userID, setUserID }) {
     const [myLocations, setMyLocations] = useState([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [showAvatarModal, setShowAvatarModal] = useState(false);
+
+    // Modal States
+    const [currentLocationId, setCurrentLocationId] = useState("");
+    const [currentLocation, setCurrentLocation] = useState({});
+    const [slideImages, setSlideImages] = useState([]);
+    const [showModal, setShowModal] = useState(false);
+
     const cityChange = (e) => {
         setCity(e.target.value);
     };
@@ -42,9 +49,9 @@ export default function ProfilePage({ userID, setUserID }) {
         setImage(...e.target.files);
     };
     useEffect(() => {
-        getUser(userId);
-        getUserLocation(userId);
-    }, []);
+        getUser();
+        getUserLocation(userID);
+    }, [userId]);
     if (
         localStorage.getItem("userId") === "" ||
         (userID && localStorage.getItem("userId") !== userID)
@@ -117,6 +124,20 @@ export default function ProfilePage({ userID, setUserID }) {
             borderRadius: "20px",
         },
     };
+    useEffect(() => {
+        axios
+            .get(`http://localhost:8000/locations/${currentLocationId}`)
+            .then((res) => {
+                console.log(res);
+                setCurrentLocation(res.data.location);
+                setSlideImages(res.data.location.images);
+            })
+            .catch((err) => console.log(err));
+    }, [currentLocationId]);
+    const setData = (locationId) => {
+        setCurrentLocationId(locationId);
+        setShowModal(true);
+    };
     return (
         <>
             <Navbar signup={false} loggedIn={true} />
@@ -143,22 +164,26 @@ export default function ProfilePage({ userID, setUserID }) {
                         isOpen={showAvatarModal}
                         onRequestClose={() => setShowAvatarModal(false)}
                     >
-                        <form className="signup-form" onSubmit={modifyAvatar}>
-                            <label htmlFor="avatar">Avatar</label>
+                        <form className="avatar-form" onSubmit={modifyAvatar}>
+                            <label className="avatar-label" htmlFor="avatar">
+                                Avatar
+                            </label>
                             <input
                                 onChange={imageChange}
                                 type="file"
                                 name="avatar"
                                 id="avatar"
                             />
-                            <button type="submit">Submit</button>
+                            <button className="submit-button" type="submit">
+                                Submit
+                            </button>
                         </form>
                     </Modal>
                     <h1 className="profile-heading">Profile</h1>
                     <div className="avatar">
                         <div>
                             <img
-                                src={`http://localhost:8000/${avatar}`}
+                                src={`http://localhost:8000${avatar}`}
                                 alt="avatar"
                             />
                             <span className="username">{username}</span>
@@ -182,9 +207,14 @@ export default function ProfilePage({ userID, setUserID }) {
                     <p className="bio">{bio}</p>
                 </div>
                 <div className="my-locations">
-                    <h1 className="location-heading">My locations</h1>
+                    <h1 className="location-card-heading">My locations</h1>
+                    <span className="locations-number">
+                        You have added {myLocations.length} Location/s
+                    </span>
                     {myLocations?.map((location) => (
                         <LocationCard
+                            setData={() => setData(location._id)}
+                            img={location.images[0]}
                             key={location._id}
                             id={location._id}
                             title={location.title}
@@ -193,6 +223,12 @@ export default function ProfilePage({ userID, setUserID }) {
                     ))}
                 </div>
             </div>
+            <LocationModal
+                showModal={showModal}
+                setShowModal={() => setShowModal(false)}
+                currentLocation={currentLocation}
+                slideImages={slideImages}
+            />
         </>
     );
 }

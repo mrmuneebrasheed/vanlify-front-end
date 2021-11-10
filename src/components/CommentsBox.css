@@ -1,0 +1,16 @@
+.comment-container {
+    width: 50%;
+    border: 1px solid white;
+    background-color: whitesmoke;
+    margin: 10px auto;
+    padding: 10px;
+    border-radius: 5px;
+}
+.comment-username {
+    color: grey;
+    border-bottom: 1px solid black;
+    padding: 5px;
+}
+.comment-body {
+    padding: 5px;
+}

@@ -52,6 +52,8 @@
     align-self: center;
     text-overflow: clip;
     text-decoration: none;
+    /* background: linear-gradient(rgb(0, 0, 0, 0.3), rgb(0, 0, 0, 0.3)); */
+    /* border-radius: 30px; */
     padding: 10px 20px;
     margin: 0 5px;
     /* border-radius: 15px; */

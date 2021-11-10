@@ -26,7 +26,7 @@ export default function Navbar(props) {
             <div>
                 {props.signup === false && !props.loggedIn && (
                     <Link className="nav-link" to="/users/signup">
-                        <span>Signup</span>
+                        <span>Sign Up</span>
                     </Link>
                 )}
                 {props.signup === true && !props.loggedIn && (

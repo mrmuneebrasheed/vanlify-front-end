@@ -214,7 +214,7 @@ export default function AddLocation({ userID, setUserID }) {
                     <MapContainer
                         className="map-container"
                         center={[48.8450326, 2.3997593]}
-                        zoom={13}
+                        zoom={6}
                         scrollWheelZoom={true}
                     >
                         <TileLayer
@@ -224,7 +224,7 @@ export default function AddLocation({ userID, setUserID }) {
                         <LocationMarker />
                     </MapContainer>
                     <p className="map-description">
-                        3000 places Found, Login to see the details
+                        Click on Map to select a location
                     </p>
                 </div>
             </Header>
