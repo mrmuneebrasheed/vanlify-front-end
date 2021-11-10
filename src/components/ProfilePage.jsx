@@ -8,7 +8,7 @@ import Modal from "react-modal";
 import ModifyProfileModal from "./ModifyProfileModal";
 import LocationModal from "./LocationModal";
 
-export default function ProfilePage({ userID, setUserID }) {
+export default function ProfilePage({ userID, setUserID, setUser }) {
     const [userId, setUserId] = useState(
         userID ? userID : localStorage.getItem("userId")
     );
@@ -48,10 +48,11 @@ export default function ProfilePage({ userID, setUserID }) {
     const imageChange = (e) => {
         setImage(...e.target.files);
     };
+
     useEffect(() => {
         getUser();
-        getUserLocation(userID);
-    }, [userId]);
+        getUserLocation();
+    }, []);
     if (
         localStorage.getItem("userId") === "" ||
         (userID && localStorage.getItem("userId") !== userID)
@@ -69,6 +70,7 @@ export default function ProfilePage({ userID, setUserID }) {
             .then((res) => {
                 const { user } = res.data;
                 console.log(user);
+                setUser(user);
                 setUsername(user.username ? user.username : "Username");
                 setEmail(user.email ? user.email : "Email");
                 setPassword(user.password ? user.password : "Password");
@@ -83,9 +85,15 @@ export default function ProfilePage({ userID, setUserID }) {
             .catch((err) => console.log(err.response));
     };
     const getUserLocation = (id) => {
-        axios.get(`http://localhost:8000/locations/all/${id}`).then((res) => {
-            setMyLocations(res.data.locations);
-        });
+        axios
+            .get(
+                `http://localhost:8000/locations/all/${
+                    userID ? userID : localStorage.getItem("userId")
+                }`
+            )
+            .then((res) => {
+                setMyLocations(res.data.locations);
+            });
     };
     const modifyProfile = (e) => {
         e.preventDefault();
@@ -140,7 +148,7 @@ export default function ProfilePage({ userID, setUserID }) {
     };
     return (
         <>
-            <Navbar signup={false} loggedIn={true} />
+            <Navbar loggedIn={true} />
             <div className="profile-section">
                 <div className="profile-card">
                     <ModifyProfileModal
@@ -165,10 +173,12 @@ export default function ProfilePage({ userID, setUserID }) {
                         onRequestClose={() => setShowAvatarModal(false)}
                     >
                         <form className="avatar-form" onSubmit={modifyAvatar}>
-                            <label className="avatar-label" htmlFor="avatar">
-                                Avatar
+                            <h1 className="avatar-label">Choose an avatar</h1>
+                            <label className="avatar-input" htmlFor="avatar">
+                                Upload Image
                             </label>
                             <input
+                                hidden
                                 onChange={imageChange}
                                 type="file"
                                 name="avatar"
@@ -178,6 +188,12 @@ export default function ProfilePage({ userID, setUserID }) {
                                 Submit
                             </button>
                         </form>
+                        <button
+                            onClick={() => setShowAvatarModal(false)}
+                            className="close-button"
+                        >
+                            Close
+                        </button>
                     </Modal>
                     <h1 className="profile-heading">Profile</h1>
                     <div className="avatar">

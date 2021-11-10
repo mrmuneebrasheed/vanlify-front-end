@@ -8,6 +8,8 @@ export default function LocationModal({
     setShowModal,
     currentLocation,
     slideImages,
+    commentChangeHandler,
+    addComment,
 }) {
     const customStyles = {
         content: {
@@ -103,26 +105,29 @@ export default function LocationModal({
                 )}
                 <div className="comments">
                     <h2 className="comments-heading">Comments</h2>
-                    {currentLocation?.comments ? (
+                    {currentLocation.comments ? (
                         currentLocation.comments.map((comment) => (
                             <CommentsBox comment={comment} />
                         ))
                     ) : (
-                        <CommentsBox
-                            comment={{
-                                description: "No comment exist",
-                            }}
-                        />
+                        <CommentsBox comment={{ title: "Admin" }} />
                     )}
-                    <div className="comment-input">
-                        <h2>Add your comment</h2>
+                    <div className="add-comment">
+                        <h2 className="add-comments-heading">
+                            Add your comment
+                        </h2>
                         <textarea
+                            className="comment-input"
+                            onChange={commentChangeHandler}
                             name="comment"
                             id="comment"
                             cols="20"
                             rows="5"
                             placeholder="Your comment here"
                         ></textarea>
+                        <button onClick={addComment} className="submit-button">
+                            Submit
+                        </button>
                     </div>
                 </div>
             </div>

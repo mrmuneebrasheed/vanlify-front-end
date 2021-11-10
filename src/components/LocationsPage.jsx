@@ -9,12 +9,13 @@ import "./LocationsPage.css";
 import "react-slideshow-image/dist/styles.css";
 import LocationModal from "./LocationModal";
 
-export default function LocationsPage(props) {
+export default function LocationsPage({ user }) {
     const { type } = useParams();
     const [locations, setLocations] = useState([]);
     const [currentLocationId, setCurrentLocationId] = useState("");
     const [currentLocation, setCurrentLocation] = useState({});
     const [slideImages, setSlideImages] = useState([]);
+    const [comment, setComment] = useState("");
     const [showModal, setShowModal] = useState(false);
     useEffect(() => {
         axios
@@ -23,6 +24,8 @@ export default function LocationsPage(props) {
                 setLocations(res.data.locations);
             })
             .catch((err) => console.log(err));
+    }, []);
+    useEffect(() => {
         axios
             .get(`http://localhost:8000/locations/${currentLocationId}`)
             .then((res) => {
@@ -57,7 +60,20 @@ export default function LocationsPage(props) {
                   </Marker>
               ));
     };
-    console.log(currentLocation);
+    const commentChangeHandler = (e) => {
+        setComment(e.target.value);
+    };
+    const addComment = () => {
+        console.log(comment, user);
+        const commentData = { username: user.username, description: comment };
+        axios
+            .post(
+                `http://localhost:8000/locations/${currentLocationId}`,
+                commentData
+            )
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+    };
     return (
         <div>
             <Navbar loggedIn={true}></Navbar>
@@ -80,6 +96,8 @@ export default function LocationsPage(props) {
                         setShowModal={() => setShowModal(false)}
                         currentLocation={currentLocation}
                         slideImages={slideImages}
+                        commentChangeHandler={commentChangeHandler}
+                        addComment={addComment}
                     />
                     <p className="map-description">
                         <span>{locations.length}</span> places Found, Click on

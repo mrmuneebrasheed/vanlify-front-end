@@ -72,6 +72,12 @@ export default function ModifyProfileModal({
                     Submit
                 </button>
             </form>
+            <button
+                onClick={() => setShowProfileModal(false)}
+                className="close-button"
+            >
+                Close
+            </button>
         </Modal>
     );
 }

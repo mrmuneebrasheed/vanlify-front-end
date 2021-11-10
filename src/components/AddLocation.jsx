@@ -12,7 +12,7 @@ import {
 } from "react-leaflet";
 import axios from "axios";
 
-export default function AddLocation({ userID, setUserID }) {
+export default function AddLocation({ userID, setUserID, user }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [userId, setUserId] = useState(
@@ -112,14 +112,7 @@ export default function AddLocation({ userID, setUserID }) {
         },
     };
     useEffect(() => {
-        axios
-            .get(`http://localhost:8000/users/${userId}`)
-            .then((res) => {
-                console.log(res);
-                const { user } = res.data;
-                setUsername(user.username ? user.username : "Username");
-            })
-            .catch((err) => console.log(err.response));
+        setUsername(user.username ? user.username : "Username");
     }, []);
     return (
         <div>

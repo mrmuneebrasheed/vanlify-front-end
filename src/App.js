@@ -8,9 +8,12 @@ import AddLocation from "./components/AddLocation";
 import Error404 from "./components/Error404";
 import Explore from "./components/Explore";
 import LocationsPage from "./components/LocationsPage";
+import axios from "axios";
 
 function App() {
     const [userID, setUserID] = useState("");
+    const [user, setUser] = useState({});
+
     return (
         <BrowserRouter>
             <div className="App">
@@ -34,6 +37,7 @@ function App() {
                             <ProfilePage
                                 userID={userID}
                                 setUserID={setUserID}
+                                setUser={(user) => setUser(user)}
                             />
                         }
                     ></Route>
@@ -41,6 +45,7 @@ function App() {
                         path="/locations/add"
                         element={
                             <AddLocation
+                                user={user}
                                 userID={userID}
                                 setUserID={setUserID}
                             />
@@ -54,7 +59,13 @@ function App() {
                     ></Route>
                     <Route
                         path="/locations/explore/types/:type"
-                        element={<LocationsPage />}
+                        element={
+                            <LocationsPage
+                                userID={userID}
+                                setUserID={setUserID}
+                                user={user}
+                            />
+                        }
                     ></Route>
                     <Route path="*" element={<Error404 />}></Route>
                 </Routes>

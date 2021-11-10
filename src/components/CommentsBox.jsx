@@ -1,7 +1,7 @@
 import React from "react";
 import "./CommentsBox.css";
 
-export default function CommentsBox({ comment }) {
+export default function CommentsBox({ comment, error }) {
     return (
         <div className="comment-container">
             <h2 className="comment-username">
