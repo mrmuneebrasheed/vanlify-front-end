@@ -8,7 +8,7 @@ import Modal from "react-modal";
 import ModifyProfileModal from "./ModifyProfileModal";
 import LocationModal from "./LocationModal";
 
-export default function ProfilePage({ userID, setUserID, setUser }) {
+export default function ProfilePage({ userID, setUserID }) {
     const [userId, setUserId] = useState(
         userID ? userID : localStorage.getItem("userId")
     );
@@ -70,7 +70,7 @@ export default function ProfilePage({ userID, setUserID, setUser }) {
             .then((res) => {
                 const { user } = res.data;
                 console.log(user);
-                setUser(user);
+
                 setUsername(user.username ? user.username : "Username");
                 setEmail(user.email ? user.email : "Email");
                 setPassword(user.password ? user.password : "Password");

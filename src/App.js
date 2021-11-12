@@ -12,8 +12,6 @@ import axios from "axios";
 
 function App() {
     const [userID, setUserID] = useState("");
-    const [user, setUser] = useState({});
-
     return (
         <BrowserRouter>
             <div className="App">
@@ -37,7 +35,7 @@ function App() {
                             <ProfilePage
                                 userID={userID}
                                 setUserID={setUserID}
-                                setUser={(user) => setUser(user)}
+                                // setUser={(user) => setUser(user)}
                             />
                         }
                     ></Route>
@@ -45,7 +43,6 @@ function App() {
                         path="/locations/add"
                         element={
                             <AddLocation
-                                user={user}
                                 userID={userID}
                                 setUserID={setUserID}
                             />
@@ -63,7 +60,6 @@ function App() {
                             <LocationsPage
                                 userID={userID}
                                 setUserID={setUserID}
-                                user={user}
                             />
                         }
                     ></Route>

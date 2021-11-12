@@ -9,15 +9,28 @@ import "./LocationsPage.css";
 import "react-slideshow-image/dist/styles.css";
 import LocationModal from "./LocationModal";
 
-export default function LocationsPage({ user }) {
+export default function LocationsPage({ userID, setUserId }) {
     const { type } = useParams();
     const [locations, setLocations] = useState([]);
+    const [user, setUser] = useState({});
     const [currentLocationId, setCurrentLocationId] = useState("");
     const [currentLocation, setCurrentLocation] = useState({});
     const [slideImages, setSlideImages] = useState([]);
     const [comment, setComment] = useState("");
+    const [refresh, setRefresh] = useState(true);
     const [showModal, setShowModal] = useState(false);
     useEffect(() => {
+        axios
+            .get(
+                `http://localhost:8000/users/${
+                    userID ? userID : localStorage.getItem("userId")
+                }`
+            )
+            .then((res) => {
+                const { user } = res.data;
+                setUser(user);
+            })
+            .catch((err) => console.log(err.response));
         axios
             .get(`http://localhost:8000/locations/type/${type}`)
             .then((res) => {
@@ -34,7 +47,7 @@ export default function LocationsPage({ user }) {
                 setSlideImages(res.data.location.images);
             })
             .catch((err) => console.log(err));
-    }, [currentLocationId]);
+    }, [currentLocationId, refresh]);
     const LocationMarker = () => {
         return locations === []
             ? null
@@ -73,6 +86,7 @@ export default function LocationsPage({ user }) {
             )
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
+        setRefresh((prev) => !prev);
     };
     return (
         <div>
