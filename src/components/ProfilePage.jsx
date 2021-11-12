@@ -54,7 +54,7 @@ export default function ProfilePage({ userID, setUserID }) {
     useEffect(() => {
         getUser();
         getUserLocation();
-    }, [user, refresh, avatar]);
+    }, [refresh]);
     if (
         localStorage.getItem("userId") === "" ||
         (userID && localStorage.getItem("userId") !== userID)
@@ -110,9 +110,9 @@ export default function ProfilePage({ userID, setUserID }) {
             .then((res) => {
                 console.log(res);
             })
+            .then(() => setRefresh((prev) => !prev))
             .catch((e) => console.log("error:", e));
         setShowProfileModal(false);
-        setRefresh((prev) => !prev);
     };
     const modifyAvatar = (e) => {
         e.preventDefault();
@@ -120,9 +120,10 @@ export default function ProfilePage({ userID, setUserID }) {
         formData.append("image", image);
         axios
             .put(`http://localhost:8000/users/avatar/${userId}`, formData)
-            .then((res) => console.log(res));
+            .then((res) => console.log(res))
+            .then(() => setRefresh((prev) => !prev))
+            .catch((err) => console.log(err));
         setShowAvatarModal(false);
-        setRefresh((prev) => !prev);
     };
     const customStyles = {
         content: {
