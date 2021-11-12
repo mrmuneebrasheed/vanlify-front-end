@@ -24,7 +24,7 @@ export default function ProfilePage({ userID, setUserID }) {
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [showAvatarModal, setShowAvatarModal] = useState(false);
     const [comment, setComment] = useState("");
-    const [refresh, setRefresh] = useState(true);
+    const [refresh, setRefresh] = useState(false);
     // Modal States
     const [currentLocationId, setCurrentLocationId] = useState("");
     const [currentLocation, setCurrentLocation] = useState({});
@@ -54,7 +54,7 @@ export default function ProfilePage({ userID, setUserID }) {
     useEffect(() => {
         getUser();
         getUserLocation();
-    }, []);
+    }, [user, refresh, avatar]);
     if (
         localStorage.getItem("userId") === "" ||
         (userID && localStorage.getItem("userId") !== userID)
@@ -62,7 +62,7 @@ export default function ProfilePage({ userID, setUserID }) {
         localStorage.setItem("userId", userID);
         setUserId(localStorage.getItem("userId"));
     }
-    const getUser = (id) => {
+    const getUser = () => {
         axios
             .get(
                 `http://localhost:8000/users/${
@@ -112,6 +112,7 @@ export default function ProfilePage({ userID, setUserID }) {
             })
             .catch((e) => console.log("error:", e));
         setShowProfileModal(false);
+        setRefresh((prev) => !prev);
     };
     const modifyAvatar = (e) => {
         e.preventDefault();
@@ -121,6 +122,7 @@ export default function ProfilePage({ userID, setUserID }) {
             .put(`http://localhost:8000/users/avatar/${userId}`, formData)
             .then((res) => console.log(res));
         setShowAvatarModal(false);
+        setRefresh((prev) => !prev);
     };
     const customStyles = {
         content: {
@@ -133,7 +135,8 @@ export default function ProfilePage({ userID, setUserID }) {
             backgroundColor: "rgb(2, 56, 69)",
             borderRadius: "20px",
             margin: "10px auto",
-            width: "80%",
+            width: "60%",
+            alignItems: "center",
         },
     };
     useEffect(() => {

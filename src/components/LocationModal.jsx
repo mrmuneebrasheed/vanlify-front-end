@@ -19,6 +19,7 @@ export default function LocationModal({
             right: "auto",
             bottom: "auto",
             marginRight: "-50%",
+            width: "70%",
             transform: "translate(-50%, -50%)",
             borderRadius: "20px",
         },
@@ -29,13 +30,14 @@ export default function LocationModal({
         infinite: true,
         prevArrow: (
             <div
-                style={{
-                    width: "30px",
-                    marginRight: "-30px",
-                    borderRadius: "10px",
-                    padding: "10px",
-                    cursor: "pointer",
-                }}
+                className="prev-arrow"
+                // style={{
+                //     width: "30px",
+                //     marginRight: "-30px",
+                //     borderRadius: "10px",
+                //     padding: "10px",
+                //     cursor: "pointer",
+                // }}
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -48,13 +50,14 @@ export default function LocationModal({
         ),
         nextArrow: (
             <div
-                style={{
-                    width: "30px",
-                    marginLeft: "-30px",
-                    borderRadius: "10px",
-                    padding: "10px",
-                    cursor: "pointer",
-                }}
+                className="next-arrow"
+                // style={{
+                //     width: "30px",
+                //     marginLeft: "-30px",
+                //     borderRadius: "10px",
+                //     padding: "10px",
+                //     cursor: "pointer",
+                // }}
             >
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

@@ -19,3 +19,11 @@
         width: 80%;
     }
 }
+@media (max-width: 400px) {
+    .comment-username {
+        font-size: 1rem;
+    }
+    .comment-body {
+        font-size: 1rem;
+    }
+}

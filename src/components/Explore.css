@@ -14,5 +14,18 @@
 .section {
     min-height: 100vh;
 }
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
+    .explore-card-heading {
+        font-size: 1.8rem;
+    }
+}
+@media (max-width: 400px) {
+    .explore-card-heading {
+        font-size: 1.5rem;
+    }
+    .container {
+        flex-direction: column;
+        margin: 20px auto;
+        width: 100%;
+    }
 }
