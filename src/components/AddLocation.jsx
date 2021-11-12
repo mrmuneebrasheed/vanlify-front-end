@@ -12,12 +12,13 @@ import {
 } from "react-leaflet";
 import axios from "axios";
 
-export default function AddLocation({ userID, setUserID, user }) {
+export default function AddLocation({ userID, setUserID }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [userId, setUserId] = useState(
         userID ? userID : localStorage.getItem("userId")
     );
+    const [user, setUser] = useState({});
     const [username, setUsername] = useState("");
     const [address, setAddress] = useState("");
     const [images, SetImages] = useState([]);
@@ -82,7 +83,6 @@ export default function AddLocation({ userID, setUserID, user }) {
     function LocationMarker() {
         useMapEvents({
             click(e) {
-                // console.log(e.latlng.lat, e.latlng.lng);
                 setMarkers([...markers, [e.latlng.lat, e.latlng.lng]]);
                 setCoords({ lat: e.latlng.lat, lng: e.latlng.lng });
                 setShowModal(true);
@@ -94,7 +94,7 @@ export default function AddLocation({ userID, setUserID, user }) {
             : markers.map((coords) => (
                   <Marker key={Math.random()} position={coords}>
                       <Popup>
-                          <p>Hello</p>
+                          <p>You marked this location</p>
                       </Popup>
                   </Marker>
               ));
@@ -109,10 +109,23 @@ export default function AddLocation({ userID, setUserID, user }) {
             transform: "translate(-50%, -50%)",
             backgroundColor: "rgb(2, 56, 69)",
             borderRadius: "20px",
+            width: "80vw",
         },
     };
     useEffect(() => {
-        setUsername(user.username ? user.username : "Username");
+        axios
+            .get(
+                `http://localhost:8000/users/${
+                    userID ? userID : localStorage.getItem("userId")
+                }`
+            )
+            .then((res) => {
+                const { user } = res.data;
+                console.log(user);
+                setUser(user);
+                setUsername(user.username);
+            })
+            .catch((err) => console.log(err.response));
     }, []);
     return (
         <div>

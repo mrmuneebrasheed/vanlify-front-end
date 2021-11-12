@@ -1,6 +1,7 @@
 .modal-card {
     display: flex;
     flex-direction: column;
+    align-items: center;
     transition: all 1s ease-out;
     animation: fade-in 2s ease-out;
 }
@@ -25,12 +26,13 @@
     cursor: pointer;
 }
 .add-location-form {
+    display: flex;
     background-color: "rgb(2, 56, 69)";
     display: flex;
     padding: 20px;
     flex-direction: row;
     background-color: rgb(2, 56, 69);
-    flex-basis: 20vw;
+    width: 80%;
 }
 .add-location-form label {
     text-align: center;
@@ -48,13 +50,13 @@
     display: flex;
     flex-direction: column;
     border-left: 2px solid whitesmoke;
-    width: 20vw;
+    width: 90%;
 }
 .add-location-form .left-bar {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    width: 20vw;
+    width: 90%;
 }
 select {
     text-align: center;
@@ -72,7 +74,7 @@ select option {
     border: 2px solid rgb(2, 56, 69);
     border-radius: 20px;
 }
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
     .submit-button {
         width: 80%;
     }
@@ -87,5 +89,20 @@ select option {
         width: 60%;
         height: 70vh;
         transform: translateY(10%);
+    }
+}
+@media (max-width: 400px) {
+    .map-homepage {
+        width: 90%;
+    }
+    .modal-card {
+    }
+    .add-location-form {
+        flex-direction: column;
+
+        overflow-y: auto;
+    }
+    .right-bar {
+        border-left: 0px;
     }
 }

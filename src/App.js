@@ -8,7 +8,6 @@ import AddLocation from "./components/AddLocation";
 import Error404 from "./components/Error404";
 import Explore from "./components/Explore";
 import LocationsPage from "./components/LocationsPage";
-import axios from "axios";
 
 function App() {
     const [userID, setUserID] = useState("");
@@ -35,7 +34,6 @@ function App() {
                             <ProfilePage
                                 userID={userID}
                                 setUserID={setUserID}
-                                // setUser={(user) => setUser(user)}
                             />
                         }
                     ></Route>

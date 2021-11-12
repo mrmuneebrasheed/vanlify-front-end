@@ -75,3 +75,14 @@ input:focus {
     border: 2px solid black;
     border-radius: 12px;
 }
+@media (max-width: 768px) {
+    .login {
+        width: 50%;
+        margin-bottom: 70px;
+    }
+}
+@media (max-width: 400px) {
+    .login {
+        width: 80%;
+    }
+}

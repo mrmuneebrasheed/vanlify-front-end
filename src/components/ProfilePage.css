@@ -169,7 +169,7 @@
     margin: 10px 10px 0 0;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
     .profile-section {
         flex-direction: column;
         width: 90%;
@@ -177,10 +177,25 @@
     }
     .profile-card {
         width: 70%;
-        margin-bottom: 20px;
+        margin-bottom: 50px;
     }
     .my-locations {
         width: 70%;
-        margin-top: 10px;
+        margin-bottom: 100px;
+    }
+}
+
+@media (max-width: 400px) {
+    .profile-card {
+        width: 90%;
+    }
+    .profile-heading {
+        font-size: 1.4rem;
+    }
+    .my-locations {
+        width: 90%;
+    }
+    .location-card-heading {
+        font-size: 1.5rem;
     }
 }

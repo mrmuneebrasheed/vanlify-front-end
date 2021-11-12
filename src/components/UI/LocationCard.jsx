@@ -8,7 +8,7 @@ export default function LocationCard({ title, description, setData, img }) {
             <img
                 className="my-location-image"
                 src={`http://localhost:8000${img}`}
-                alt="no image"
+                alt="nothing"
             />
             <p>{description}</p>
             <button onClick={setData} className="details-button">

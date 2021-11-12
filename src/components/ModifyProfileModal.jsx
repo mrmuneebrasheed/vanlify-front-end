@@ -1,5 +1,6 @@
 import React from "react";
 import Modal from "react-modal";
+import "./ModifyProfileModal.css";
 
 export default function ModifyProfileModal({
     customStyles,
@@ -23,7 +24,7 @@ export default function ModifyProfileModal({
             isOpen={showProfileModal}
             onRequestClose={() => setShowProfileModal(false)}
         >
-            <form onSubmit={modifyProfile} className="signup-form">
+            <form className="modify-profile-modal" onSubmit={modifyProfile}>
                 <input
                     autoComplete="off"
                     onChange={usernameChange}

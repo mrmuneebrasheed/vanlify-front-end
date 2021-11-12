@@ -76,6 +76,9 @@ export default function LocationsPage({ userID, setUserId }) {
     const commentChangeHandler = (e) => {
         setComment(e.target.value);
     };
+    const test = () => {
+        console.log("test");
+    };
     const addComment = () => {
         console.log(comment, user);
         const commentData = { username: user.username, description: comment };
@@ -112,6 +115,8 @@ export default function LocationsPage({ userID, setUserId }) {
                         slideImages={slideImages}
                         commentChangeHandler={commentChangeHandler}
                         addComment={addComment}
+                        comment={comment}
+                        test={test}
                     />
                     <p className="map-description">
                         <span>{locations.length}</span> places Found, Click on

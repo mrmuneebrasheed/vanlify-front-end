@@ -10,7 +10,7 @@
     /* border: 2px double whitesmoke; */
     /* box-shadow: 0 5px 10px 2px whitesmoke; */
     border-radius: 20px;
-    min-height: 50vh;
+    /* min-height: 50vh; */
     /* background: linear-gradient(45deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
         url("../assets/img/AppBackground1.jpg"); */
     background-size: cover;
@@ -27,5 +27,17 @@
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+}
+@media (max-width: 400px) {
+    .header {
+        width: 100%;
     }
 }

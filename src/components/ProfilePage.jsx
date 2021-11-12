@@ -12,6 +12,7 @@ export default function ProfilePage({ userID, setUserID }) {
     const [userId, setUserId] = useState(
         userID ? userID : localStorage.getItem("userId")
     );
+    const [user, setUser] = useState({});
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -22,7 +23,8 @@ export default function ProfilePage({ userID, setUserID }) {
     const [myLocations, setMyLocations] = useState([]);
     const [showProfileModal, setShowProfileModal] = useState(false);
     const [showAvatarModal, setShowAvatarModal] = useState(false);
-
+    const [comment, setComment] = useState("");
+    const [refresh, setRefresh] = useState(true);
     // Modal States
     const [currentLocationId, setCurrentLocationId] = useState("");
     const [currentLocation, setCurrentLocation] = useState({});
@@ -70,7 +72,7 @@ export default function ProfilePage({ userID, setUserID }) {
             .then((res) => {
                 const { user } = res.data;
                 console.log(user);
-
+                setUser(user);
                 setUsername(user.username ? user.username : "Username");
                 setEmail(user.email ? user.email : "Email");
                 setPassword(user.password ? user.password : "Password");
@@ -130,21 +132,38 @@ export default function ProfilePage({ userID, setUserID }) {
             transform: "translate(-50%, -50%)",
             backgroundColor: "rgb(2, 56, 69)",
             borderRadius: "20px",
+            margin: "10px auto",
+            width: "80%",
         },
     };
     useEffect(() => {
         axios
             .get(`http://localhost:8000/locations/${currentLocationId}`)
             .then((res) => {
-                console.log(res);
                 setCurrentLocation(res.data.location);
                 setSlideImages(res.data.location.images);
             })
             .catch((err) => console.log(err));
-    }, [currentLocationId]);
+    }, [currentLocationId, refresh]);
     const setData = (locationId) => {
         setCurrentLocationId(locationId);
         setShowModal(true);
+    };
+    const commentChangeHandler = (e) => {
+        setComment(e.target.value);
+    };
+    const addComment = () => {
+        console.log(comment, user);
+        const commentData = { username: user.username, description: comment };
+        axios
+            .post(
+                `http://localhost:8000/locations/${currentLocationId}`,
+                commentData
+            )
+            .then((res) => console.log(res))
+            .catch((err) => console.log(err));
+        setRefresh((prev) => !prev);
+        setComment("");
     };
     return (
         <>
@@ -244,6 +263,9 @@ export default function ProfilePage({ userID, setUserID }) {
                 setShowModal={() => setShowModal(false)}
                 currentLocation={currentLocation}
                 slideImages={slideImages}
+                comment={comment}
+                addComment={addComment}
+                commentChangeHandler={commentChangeHandler}
             />
         </>
     );

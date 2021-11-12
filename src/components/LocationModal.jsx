@@ -9,6 +9,7 @@ export default function LocationModal({
     currentLocation,
     slideImages,
     commentChangeHandler,
+    comment,
     addComment,
 }) {
     const customStyles = {
@@ -65,6 +66,7 @@ export default function LocationModal({
             </div>
         ),
     };
+
     return (
         <Modal
             style={customStyles}
@@ -106,8 +108,8 @@ export default function LocationModal({
                 <div className="comments">
                     <h2 className="comments-heading">Comments</h2>
                     {currentLocation.comments ? (
-                        currentLocation.comments.map((comment) => (
-                            <CommentsBox comment={comment} />
+                        currentLocation.comments.map((comment, index) => (
+                            <CommentsBox key={index} comment={comment} />
                         ))
                     ) : (
                         <CommentsBox comment={{ title: "Admin" }} />
@@ -124,6 +126,7 @@ export default function LocationModal({
                             cols="20"
                             rows="5"
                             placeholder="Your comment here"
+                            value={comment}
                         ></textarea>
                         <button onClick={addComment} className="submit-button">
                             Submit

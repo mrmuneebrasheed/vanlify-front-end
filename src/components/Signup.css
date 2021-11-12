@@ -6,9 +6,8 @@
     align-content: center;
     justify-content: center;
     padding: 10px;
-    min-height: 70vh;
     width: 50%;
-    margin: 5% auto;
+    margin: 50px auto;
     border-radius: 10%;
     background: linear-gradient(rgb(0, 0, 0, 0.4), rgb(0, 0, 0, 0.4)),
         url("../assets/img/LoginBackground.jpg");
@@ -72,5 +71,14 @@ input[type="file"] {
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+@media (max-width: 768px) {
+    .signup-card {
+        width: 80%;
+        margin: 50px auto;
+    }
+    .signup-form {
+        width: 80%;
     }
 }

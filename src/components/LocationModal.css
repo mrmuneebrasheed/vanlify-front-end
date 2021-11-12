@@ -95,3 +95,8 @@
 .comment-input {
     min-width: 50%;
 }
+@media (max-width: 768px) {
+    .slide-container {
+        width: 90%;
+    }
+}

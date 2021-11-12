@@ -11,7 +11,12 @@
     background-position-y: -100px;
     min-height: 100vh;
 }
-
+@media (max-width: 768px) {
+    .App {
+        background-size: cover;
+        background-position-y: 0;
+    }
+}
 .App-header {
     background-color: #282c34;
     min-height: 100vh;
