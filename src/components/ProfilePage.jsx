@@ -8,7 +8,6 @@ import axios from "axios";
 import Modal from "react-modal";
 import ModifyProfileModal from "./ModifyProfileModal";
 import LocationModal from "./LocationModal";
-import ScrollButton from "react-scroll-button";
 
 export default function ProfilePage({ userID, setUserID }) {
     const [userId, setUserId] = useState(
@@ -260,14 +259,6 @@ export default function ProfilePage({ userID, setUserID }) {
                             description={location.description}
                         />
                     ))}
-                    <ScrollButton
-                        iconType={"chevron-up"}
-                        targetId={"my-locations"}
-                        behavior={"smooth"}
-                        buttonBackgroundColor={"red"}
-                        iconType={"arrow-up"}
-                        style={{ fontSize: "24px" }}
-                    />
                 </div>
             </div>
             <LocationModal
