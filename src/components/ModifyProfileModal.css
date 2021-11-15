@@ -18,3 +18,8 @@ textarea {
 textarea::placeholder {
     color: whitesmoke;
 }
+@media (max-width: 400px) {
+    .modify-profile-modal {
+        width: 100%;
+    }
+}

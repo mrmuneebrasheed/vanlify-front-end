@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import Navbar from "./Navbar";
 import axios from "axios";
 import "./Signup.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Modal from "react-modal";
 
 export default function Signup({ userID, setUserID }) {
     const navigate = useNavigate();
@@ -10,6 +11,8 @@ export default function Signup({ userID, setUserID }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const [modalMessage, setModalMessage] = useState("Something went wrong!");
 
     const usernameChange = (e) => {
         setUsername(e.target.value);
@@ -39,7 +42,23 @@ export default function Signup({ userID, setUserID }) {
                 setUserID(res.data._id);
                 navigate("/users/profile");
             })
-            .catch((e) => console.log("error", e));
+            .catch((e) => {
+                console.log("error", e.response);
+                setShowModal(true);
+            });
+    };
+    const customStyles = {
+        content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            // backgroundColor: "transparent",
+            borderRadius: "20px",
+            overFlowY: "auto",
+        },
     };
     return (
         <>
@@ -89,6 +108,19 @@ export default function Signup({ userID, setUserID }) {
                     </button>
                 </form>
             </div>
+            <Modal
+                isOpen={showModal}
+                onRequestClose={() => setShowModal(false)}
+                style={customStyles}
+            >
+                <h1>{modalMessage}</h1>
+                <button
+                    onClick={() => setShowModal(false)}
+                    className="submit-button"
+                >
+                    Close
+                </button>
+            </Modal>
         </>
     );
 }

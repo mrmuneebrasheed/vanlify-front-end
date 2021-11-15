@@ -4,6 +4,7 @@
     /* justify-content: center; */
     align-items: center;
     max-width: 80vw;
+    margin: 0 auto;
     height: 90vh;
     animation: fade-in 1s ease-in-out;
     overflow-y: scroll;
@@ -51,10 +52,6 @@
     color: whitesmoke;
     text-align: center;
     margin: 10px auto;
-}
-.close-button {
-    width: 40px;
-    height: 40px;
 }
 .slide-container {
     width: 60%;
@@ -137,6 +134,8 @@
     }
 }
 @media (max-width: 400px) {
+    .location-modal {
+    }
     .location-heading {
         font-size: 1.5rem;
     }
@@ -166,5 +165,9 @@
     }
     .next-arrow {
         width: 10px;
+    }
+    .delete-button {
+        padding: 5px 10px;
+        top: 20px;
     }
 }

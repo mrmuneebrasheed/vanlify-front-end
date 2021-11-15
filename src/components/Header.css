@@ -55,4 +55,7 @@
         width: 100%;
         align-items: center;
     }
+    .heading {
+        font-size: 1.2rem;
+    }
 }

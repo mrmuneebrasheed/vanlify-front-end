@@ -206,7 +206,7 @@ export default function AddLocation({ userID, setUserID }) {
                         </div>
                     </form>
                     <button
-                        className="close-button"
+                        className="delete-button"
                         onClick={() => setShowModal(false)}
                     >
                         Close
@@ -214,7 +214,6 @@ export default function AddLocation({ userID, setUserID }) {
                 </div>
             </Modal>
             <Header>
-                {" "}
                 <div className="map-homepage">
                     <MapContainer
                         className="map-container"

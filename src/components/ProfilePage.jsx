@@ -131,7 +131,7 @@ export default function ProfilePage({ userID, setUserID }) {
             backgroundColor: "rgb(2, 56, 69)",
             borderRadius: "20px",
             margin: "10px auto",
-            width: "60%",
+            width: "80vw",
             alignItems: "center",
         },
     };
@@ -211,7 +211,7 @@ export default function ProfilePage({ userID, setUserID }) {
                         </form>
                         <button
                             onClick={() => setShowAvatarModal(false)}
-                            className="close-button"
+                            className="delete-button"
                         >
                             Close
                         </button>

@@ -23,7 +23,7 @@ export default function LocationModal({
             right: "auto",
             bottom: "auto",
             marginRight: "-50%",
-            width: "70%",
+            width: "89vw",
             transform: "translate(-50%, -50%)",
             borderRadius: "20px",
         },
@@ -84,7 +84,7 @@ export default function LocationModal({
                 <div className="location-modal">
                     <h1 className="location-heading">
                         {currentLocation?.title}{" "}
-                        <span className="close-button" onClick={setShowModal}>
+                        <span className="delete-button" onClick={setShowModal}>
                             X
                         </span>
                     </h1>
