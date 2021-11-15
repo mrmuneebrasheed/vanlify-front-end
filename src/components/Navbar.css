@@ -120,7 +120,7 @@
         transform: rotateY(180deg);
     }
     to {
-        transform: rotateX(0deg) skewX(30deg);
+        transform: rotateX(0deg);
     }
 }
 @media (max-width: 768px) {

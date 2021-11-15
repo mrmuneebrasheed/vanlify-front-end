@@ -159,9 +159,12 @@ export default function ProfilePage({ userID, setUserID }) {
                 `http://localhost:8000/locations/${currentLocationId}`,
                 commentData
             )
-            .then((res) => console.log(res))
+            .then((res) => {
+                console.log(res);
+                setRefresh((prev) => !prev);
+            })
             .catch((err) => console.log(err));
-        setRefresh((prev) => !prev);
+
         setComment("");
     };
     return (

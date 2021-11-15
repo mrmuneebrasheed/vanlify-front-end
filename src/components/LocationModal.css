@@ -52,6 +52,10 @@
     text-align: center;
     margin: 10px auto;
 }
+.close-button {
+    width: 40px;
+    height: 40px;
+}
 .slide-container {
     width: 60%;
     height: 50vh;

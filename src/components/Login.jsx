@@ -8,7 +8,9 @@ export default function Login({ userID, setUserID }) {
     const [username, setUsername] = useState();
     const [password, setPassword] = useState();
     const navigate = useNavigate();
-    const [modalMessage, setModalMessage] = useState("");
+    const [modalMessage, setModalMessage] = useState(
+        "Login credentials not valid"
+    );
     const [showModal, setShowModal] = useState(false);
     const onChangeUsername = (e) => {
         setUsername(e.target.value);
@@ -30,7 +32,7 @@ export default function Login({ userID, setUserID }) {
             })
             .catch((err) => {
                 console.log(err.response);
-                setModalMessage(err.response.error);
+                setModalMessage(err.response.data.error);
                 setShowModal(true);
             });
     };
