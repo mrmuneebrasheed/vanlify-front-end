@@ -49,7 +49,6 @@ export default function AddLocation({ userID, setUserID }) {
         formData.append("description", description);
         formData.append("address", address);
         formData.append("type", type);
-        console.log(typeof coordinates, coordinates);
         formData.append("coordinates", JSON.stringify(coordinates));
         formData.append("userId", userId);
         formData.append("username", username);
@@ -107,7 +106,7 @@ export default function AddLocation({ userID, setUserID }) {
             bottom: "auto",
             marginRight: "-50%",
             transform: "translate(-50%, -50%)",
-            // backgroundColor: "rgb(2, 56, 69)",
+            backgroundColor: "transparent",
             borderRadius: "20px",
             width: "80vw",
             overFlowY: "auto",
@@ -170,7 +169,11 @@ export default function AddLocation({ userID, setUserID }) {
                         </div>
                         <div className="right-bar">
                             <label htmlFor="images">Images</label>
+                            <label className="avatar-input" htmlFor="images">
+                                Upload Images
+                            </label>
                             <input
+                                hidden
                                 onChange={onChangeImages}
                                 type="file"
                                 name="images"
@@ -210,23 +213,26 @@ export default function AddLocation({ userID, setUserID }) {
                     </button>
                 </div>
             </Modal>
-            <div className="map-homepage">
-                <MapContainer
-                    className="map-container"
-                    center={[48.8450326, 2.3997593]}
-                    zoom={6}
-                    scrollWheelZoom={true}
-                >
-                    <TileLayer
-                        attribution='&copy; <a href="https://api.maptiler.com/maps/topo/tiles.json?key=6VtA7Ctgi6GFUAkKgZPz'
-                        url="https://api.maptiler.com/maps/topo/{z}/{x}/{y}.png?key=6VtA7Ctgi6GFUAkKgZPz"
-                    />
-                    <LocationMarker />
-                </MapContainer>
-                <p className="map-description">
-                    Click on Map to select a location
-                </p>
-            </div>
+            <Header>
+                {" "}
+                <div className="map-homepage">
+                    <MapContainer
+                        className="map-container"
+                        center={[48.8450326, 2.3997593]}
+                        zoom={6}
+                        scrollWheelZoom={true}
+                    >
+                        <TileLayer
+                            attribution='&copy; <a href="https://api.maptiler.com/maps/topo/tiles.json?key=6VtA7Ctgi6GFUAkKgZPz'
+                            url="https://api.maptiler.com/maps/topo/{z}/{x}/{y}.png?key=6VtA7Ctgi6GFUAkKgZPz"
+                        />
+                        <LocationMarker />
+                    </MapContainer>
+                    <p className="map-description">
+                        Click on Map to select a location
+                    </p>
+                </div>
+            </Header>
         </div>
     );
 }

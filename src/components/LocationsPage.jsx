@@ -87,10 +87,22 @@ export default function LocationsPage({ userID, setUserId }) {
                 `http://localhost:8000/locations/${currentLocationId}`,
                 commentData
             )
-            .then((res) => console.log(res))
+            .then((res) => {
+                console.log(res);
+                setRefresh((prev) => !prev);
+            })
             .catch((err) => console.log(err));
-        setRefresh((prev) => !prev);
     };
+    const deleteLocation = () => {
+        axios
+            .delete(`http://localhost:8000/locations/${currentLocationId}`)
+            .then((res) => {
+                console.log(res);
+                setShowModal(false);
+            })
+            .catch((err) => console.log(err));
+    };
+    const modifyLocation = () => {};
     return (
         <div>
             <Navbar loggedIn={true}></Navbar>
@@ -111,12 +123,16 @@ export default function LocationsPage({ userID, setUserId }) {
                     <LocationModal
                         showModal={showModal}
                         setShowModal={() => setShowModal(false)}
+                        currentLocationId={currentLocationId}
                         currentLocation={currentLocation}
                         slideImages={slideImages}
                         commentChangeHandler={commentChangeHandler}
                         addComment={addComment}
+                        deleteLocation={deleteLocation}
+                        modifyLocation={modifyLocation}
                         comment={comment}
                         test={test}
+                        myLocation={false}
                     />
                     <p className="map-description">
                         <span>{locations.length}</span> places Found, Click on

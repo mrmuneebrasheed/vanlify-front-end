@@ -61,14 +61,14 @@
     align-items: center;
 }
 .prev-arrow {
-    width: 20px;
-    height: 30px;
+    width: 40px;
+    padding: 5px;
     border-radius: 20px;
     cursor: pointer;
 }
 .next-arrow {
-    width: 20px;
-    height: 30px;
+    width: 40px;
+    padding: 5px;
     border-radius: 20px;
     cursor: pointer;
 }
@@ -108,6 +108,25 @@
 .comment-input {
     min-width: 50%;
 }
+.my-locations-button {
+    margin-top: 5px;
+}
+.delete-button {
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: #e03131;
+    color: whitesmoke;
+    cursor: pointer;
+}
+.modify-button {
+    padding: 10px 20px;
+    border: 1px solid black;
+    border-radius: 20px;
+    background-color: #3633fd;
+    color: whitesmoke;
+    cursor: pointer;
+}
 @media (max-width: 768px) {
     .slide-container {
         width: 90%;
@@ -137,5 +156,11 @@
     }
     .comments {
         font-size: 1rem;
+    }
+    .prev-arrow {
+        width: 10px;
+    }
+    .next-arrow {
+        width: 10px;
     }
 }

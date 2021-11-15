@@ -26,7 +26,6 @@ export default function FranceMap() {
                       <Popup className="pop-up">
                           <h3>{location.title}</h3>
                           <p>{location.address}</p>
-                          <button>Details</button>
                       </Popup>
                   </Marker>
               ));

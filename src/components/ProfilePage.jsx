@@ -270,6 +270,7 @@ export default function ProfilePage({ userID, setUserID }) {
                 comment={comment}
                 addComment={addComment}
                 commentChangeHandler={commentChangeHandler}
+                myLocation={true}
             />
         </>
     );

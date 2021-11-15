@@ -32,6 +32,8 @@
     flex-direction: row;
     background-color: rgb(2, 56, 69);
     width: 80%;
+    border-radius: 20px;
+    margin: 10px auto;
 }
 .add-location-form label {
     text-align: center;

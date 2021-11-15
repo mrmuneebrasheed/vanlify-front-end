@@ -8,8 +8,12 @@ export default function Homepage({ userID, setUserID }) {
     return (
         <div className="homepage">
             <Navbar signup={false} loggedIn={false} />
-
-            <Header userID={userID} setUserID={setUserID}>
+            <div className="heading-div">
+                <h1 className="heading">
+                    Trouvez les meilleurs spots du France
+                </h1>
+            </div>
+            <Header>
                 <Login userID={userID} setUserID={setUserID} />
                 <FranceMap />
             </Header>

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import Modal from "react-modal";
 import { Slide } from "react-slideshow-image";
@@ -9,8 +10,11 @@ export default function LocationModal({
     currentLocation,
     slideImages,
     commentChangeHandler,
+    deleteLocation,
+    modifyLocation,
     comment,
     addComment,
+    myLocation,
 }) {
     const customStyles = {
         content: {
@@ -71,72 +75,92 @@ export default function LocationModal({
     };
 
     return (
-        <Modal
-            style={customStyles}
-            isOpen={showModal}
-            onRequestClose={setShowModal}
-        >
-            <div className="location-modal">
-                <h1 className="location-heading">
-                    {currentLocation?.title}{" "}
-                    <span className="close-button" onClick={setShowModal}>
-                        X
-                    </span>
-                </h1>
-                <p className="modal-description">
-                    {currentLocation?.description}
-                </p>
-                <div className="slide-container">
-                    <Slide {...properties}>
-                        {slideImages?.map((slideImage, index) => (
-                            <div className="each-slide" key={index}>
-                                <img
-                                    className="modal-image"
-                                    src={`http://localhost:8000${slideImage}`}
-                                    alt="No Image"
-                                ></img>
-                            </div>
-                        ))}
-                    </Slide>
-                </div>
-                )
-                {currentLocation?.address && (
-                    <div className="address-div">
-                        <h2 className="modal-address">Address</h2>
-                        <h3 className="modal-address">
-                            {currentLocation?.address}
-                        </h3>
+        <>
+            <Modal
+                style={customStyles}
+                isOpen={showModal}
+                onRequestClose={setShowModal}
+            >
+                <div className="location-modal">
+                    <h1 className="location-heading">
+                        {currentLocation?.title}{" "}
+                        <span className="close-button" onClick={setShowModal}>
+                            X
+                        </span>
+                    </h1>
+                    <p className="modal-description">
+                        {currentLocation?.description}
+                    </p>
+                    <div className="slide-container">
+                        <Slide {...properties}>
+                            {slideImages?.map((slideImage, index) => (
+                                <div className="each-slide" key={index}>
+                                    <img
+                                        className="modal-image"
+                                        src={`http://localhost:8000${slideImage}`}
+                                        alt="No Image"
+                                    ></img>
+                                </div>
+                            ))}
+                        </Slide>
                     </div>
-                )}
-                <div className="comments">
-                    <h2 className="comments-heading">Comments</h2>
-                    {currentLocation.comments ? (
-                        currentLocation.comments.map((comment, index) => (
-                            <CommentsBox key={index} comment={comment} />
-                        ))
-                    ) : (
-                        <CommentsBox comment={{ title: "Admin" }} />
+                    {currentLocation?.address && (
+                        <div className="address-div">
+                            <h2 className="modal-address">Address</h2>
+                            <h3 className="modal-address">
+                                {currentLocation?.address}
+                            </h3>
+                        </div>
                     )}
-                    <div className="add-comment">
-                        <h2 className="add-comments-heading">
-                            Add your comment
-                        </h2>
-                        <textarea
-                            className="comment-input"
-                            onChange={commentChangeHandler}
-                            name="comment"
-                            id="comment"
-                            cols="20"
-                            rows="5"
-                            placeholder="Your comment here"
-                            value={comment}
-                        ></textarea>
-                        <button onClick={addComment} className="submit-button">
-                            Submit
-                        </button>
+                    {myLocation === true && (
+                        <div className="my-locations-button">
+                            <button
+                                onClick={deleteLocation}
+                                className="delete-button"
+                            >
+                                Delete
+                            </button>
+                            <button
+                                onClick={modifyLocation}
+                                className="modify-button"
+                            >
+                                Modify
+                            </button>
+                        </div>
+                    )}
+                    <div className="comments">
+                        <h2 className="comments-heading">Comments</h2>
+                        {currentLocation.comments ? (
+                            currentLocation.comments.map((comment, index) => (
+                                <CommentsBox key={index} comment={comment} />
+                            ))
+                        ) : (
+                            <CommentsBox comment={{ title: "Admin" }} />
+                        )}
+                        <div className="add-comment">
+                            <h2 className="add-comments-heading">
+                                Add your comment
+                            </h2>
+                            <textarea
+                                className="comment-input"
+                                onChange={commentChangeHandler}
+                                name="comment"
+                                id="comment"
+                                cols="20"
+                                rows="5"
+                                placeholder="Your comment here"
+                                value={comment}
+                            ></textarea>
+                            <button
+                                onClick={addComment}
+                                className="submit-button"
+                            >
+                                Submit
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </Modal>
+            </Modal>
+        </>
     );
 }
