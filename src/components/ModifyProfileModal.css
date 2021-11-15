@@ -1,3 +1,17 @@
 .modify-profile-modal {
+    display: flex;
+    flex-direction: column;
     width: 80%;
+    margin: 10px auto;
+    /* align-items: center;
+    justify-content: center; */
+}
+.modify-profile-modal > {
+    margin: 10px auto;
+}
+textarea {
+    font-family: sans-serif;
+    background: transparent;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
 }

@@ -3,28 +3,26 @@
 .signup-card {
     display: flex;
     flex-direction: column;
-    align-content: center;
+    align-items: center;
     justify-content: center;
     padding: 10px;
     width: 50%;
     margin: 50px auto;
-    border-radius: 10%;
-    background: linear-gradient(rgb(0, 0, 0, 0.4), rgb(0, 0, 0, 0.4)),
-        url("../assets/img/LoginBackground.jpg");
-    background: transparent;
+    border-radius: 20px;
+    background: linear-gradient(rgb(0, 0, 0, 0.8), rgb(0, 0, 0, 0.8));
+    /* background: transparent; */
     background-size: cover;
-    box-shadow: 0 5px 20px 2px whitesmoke;
+    /* box-shadow: 0 5px 20px 2px whitesmoke; */
     animation: animation 1s ease-out;
 }
 .signup-form {
     display: flex;
     flex-direction: column;
-    border: 2px solid whitesmoke;
+    /* border: 2px solid whitesmoke; */
     width: 30vw;
     padding: 30px;
     margin: 20px auto;
     border-radius: 20%;
-    background: linear-gradient(rgb(0, 0, 0, 0.6), rgb(0, 0, 0, 0.6));
 }
 textarea {
     padding: 20px;
@@ -43,7 +41,7 @@ textarea::placeholder {
     background-color: whitesmoke;
     color: rgb(2, 56, 69);
     border: 2px solid rgb(2, 56, 69);
-    border-radius: 12%;
+    border-radius: 20px;
     font-family: "Permanent Marker", cursive;
     font-family: "Righteous", cursive;
     letter-spacing: 1px;

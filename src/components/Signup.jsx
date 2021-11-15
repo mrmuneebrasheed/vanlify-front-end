@@ -4,7 +4,7 @@ import axios from "axios";
 import "./Signup.css";
 import { Link, useNavigate } from "react-router-dom";
 
-export default function Signup() {
+export default function Signup({ userID, setUserID }) {
     const navigate = useNavigate();
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -25,18 +25,21 @@ export default function Signup() {
     };
 
     const handleSignup = (e) => {
+        e.preventDefault();
         axios
-            .post("/users/signup", {
+            .post("http://localhost:8000/users/signup", {
                 username,
                 email,
                 password,
                 passwordConfirm,
             })
             .then((res) => {
-                console.log(res.json());
+                console.log(res);
+                localStorage.setItem("userId", res.data._id);
+                setUserID(res.data._id);
                 navigate("/users/profile");
             })
-            .catch((e) => console.log("error"));
+            .catch((e) => console.log("error", e));
     };
     return (
         <>
@@ -81,11 +84,9 @@ export default function Signup() {
                         value={passwordConfirm}
                     />
 
-                    <Link to="/users/profile">
-                        <button className="submit-button" type="submit">
-                            Submit
-                        </button>
-                    </Link>
+                    <button className="submit-button" type="submit">
+                        Submit
+                    </button>
                 </form>
             </div>
         </>

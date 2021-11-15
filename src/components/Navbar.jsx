@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import logo from "../assets/img/logo2.png";
+import logo from "../assets/img/logo4.png";
 import "./Navbar.css";
 
 export default function Navbar(props) {
@@ -10,17 +10,7 @@ export default function Navbar(props) {
             <span>
                 <img className="logo" src={logo} alt="logo" />
             </span>
-            {props.loggedIn === true && (
-                <div>
-                    <Link className="nav-link" to="/locations/add">
-                        <span>Add a Location</span>
-                    </Link>
-
-                    <Link className="nav-link" to="/locations/explore">
-                        Explore
-                    </Link>
-                </div>
-            )}
+            {props.loggedIn === true && <div></div>}
             <div className="skew">
                 <h1 className="title">Vanlify</h1>
             </div>
@@ -36,9 +26,17 @@ export default function Navbar(props) {
                     </Link>
                 )}
                 {props.loggedIn === true && (
-                    <Link className="nav-link" to="/users/profile">
-                        <span>Profile</span>
-                    </Link>
+                    <>
+                        <Link className="nav-link" to="/users/profile">
+                            <span>Profile</span>
+                        </Link>
+                        <Link className="nav-link" to="/locations/add">
+                            <span>Add a Location</span>
+                        </Link>
+                        <Link className="nav-link" to="/locations/explore">
+                            Explore
+                        </Link>
+                    </>
                 )}
                 {props.loggedIn === true && (
                     <Link className="nav-link" to="/">

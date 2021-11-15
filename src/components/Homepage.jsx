@@ -9,9 +9,9 @@ export default function Homepage({ userID, setUserID }) {
         <div className="homepage">
             <Navbar signup={false} loggedIn={false} />
             <div className="heading-div">
-                <h1 className="heading">
-                    Trouvez les meilleurs spots du France
-                </h1>
+                <p className="heading">
+                    Discover the best places to visit in France
+                </p>
             </div>
             <Header>
                 <Login userID={userID} setUserID={setUserID} />

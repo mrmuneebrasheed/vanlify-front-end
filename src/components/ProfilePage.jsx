@@ -3,10 +3,12 @@ import Navbar from "./Navbar";
 import "./UI/LocationCard";
 import "./ProfilePage.css";
 import LocationCard from "./UI/LocationCard";
+import Image from "../assets/img/userImage.jpg";
 import axios from "axios";
 import Modal from "react-modal";
 import ModifyProfileModal from "./ModifyProfileModal";
 import LocationModal from "./LocationModal";
+import ScrollButton from "react-scroll-button";
 
 export default function ProfilePage({ userID, setUserID }) {
     const [userId, setUserId] = useState(
@@ -71,7 +73,6 @@ export default function ProfilePage({ userID, setUserID }) {
             )
             .then((res) => {
                 const { user } = res.data;
-                console.log(user);
                 setUser(user);
                 setUsername(user.username ? user.username : "Username");
                 setEmail(user.email ? user.email : "Email");
@@ -99,12 +100,7 @@ export default function ProfilePage({ userID, setUserID }) {
     };
     const modifyProfile = (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("username", username);
-        formData.append("email", email);
-        formData.append("password", password);
-        formData.append("bio", bio);
-        formData.append("city", city);
+        const formData = { username, password, bio, avatar, email, city };
         axios
             .put(`http://localhost:8000/users/${userId}`, formData)
             .then((res) => {
@@ -147,7 +143,7 @@ export default function ProfilePage({ userID, setUserID }) {
                 setCurrentLocation(res.data.location);
                 setSlideImages(res.data.location.images);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => console.log(err.response));
     }, [currentLocationId, refresh]);
     const setData = (locationId) => {
         setCurrentLocationId(locationId);
@@ -222,7 +218,11 @@ export default function ProfilePage({ userID, setUserID }) {
                     <div className="avatar">
                         <div>
                             <img
-                                src={`http://localhost:8000${avatar}`}
+                                src={
+                                    avatar
+                                        ? `http://localhost:8000${avatar}`
+                                        : Image
+                                }
                                 alt="avatar"
                             />
                             <span className="username">{username}</span>
@@ -245,7 +245,7 @@ export default function ProfilePage({ userID, setUserID }) {
                     <p className="city">{city ? city : "City"}</p>
                     <p className="bio">{bio}</p>
                 </div>
-                <div className="my-locations">
+                <div id="my-locations" className="my-locations">
                     <h1 className="location-card-heading">My locations</h1>
                     <span className="locations-number">
                         You have added {myLocations.length} Location/s
@@ -260,6 +260,14 @@ export default function ProfilePage({ userID, setUserID }) {
                             description={location.description}
                         />
                     ))}
+                    <ScrollButton
+                        iconType={"chevron-up"}
+                        targetId={"my-locations"}
+                        behavior={"smooth"}
+                        buttonBackgroundColor={"red"}
+                        iconType={"arrow-up"}
+                        style={{ fontSize: "24px" }}
+                    />
                 </div>
             </div>
             <LocationModal
