@@ -26,6 +26,7 @@ export default function LocationModal({
             width: "89vw",
             transform: "translate(-50%, -50%)",
             borderRadius: "20px",
+            backgroundColor: "transparent",
         },
     };
     const properties = {

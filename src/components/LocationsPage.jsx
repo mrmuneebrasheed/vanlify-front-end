@@ -93,15 +93,7 @@ export default function LocationsPage({ userID, setUserId }) {
             })
             .catch((err) => console.log(err));
     };
-    const deleteLocation = () => {
-        axios
-            .delete(`http://localhost:8000/locations/${currentLocationId}`)
-            .then((res) => {
-                console.log(res);
-                setShowModal(false);
-            })
-            .catch((err) => console.log(err));
-    };
+
     const modifyLocation = () => {};
     return (
         <div>
@@ -128,7 +120,6 @@ export default function LocationsPage({ userID, setUserId }) {
                         slideImages={slideImages}
                         commentChangeHandler={commentChangeHandler}
                         addComment={addComment}
-                        deleteLocation={deleteLocation}
                         modifyLocation={modifyLocation}
                         comment={comment}
                         test={test}

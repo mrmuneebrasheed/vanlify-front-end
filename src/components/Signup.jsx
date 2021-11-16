@@ -38,8 +38,8 @@ export default function Signup({ userID, setUserID }) {
             })
             .then((res) => {
                 console.log(res);
-                localStorage.setItem("userId", res.data._id);
-                setUserID(res.data._id);
+                localStorage.setItem("userId", res.data.user._id);
+                setUserID(res.data.user._id);
                 navigate("/users/profile");
             })
             .catch((e) => {

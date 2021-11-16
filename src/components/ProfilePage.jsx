@@ -167,6 +167,16 @@ export default function ProfilePage({ userID, setUserID }) {
 
         setComment("");
     };
+    const deleteLocation = () => {
+        axios
+            .delete(`http://localhost:8000/locations/${currentLocationId}`)
+            .then((res) => {
+                console.log(res);
+                setShowModal(false);
+                setRefresh((prev) => !prev);
+            })
+            .catch((err) => console.log(err));
+    };
     return (
         <>
             <Navbar loggedIn={true} />
@@ -271,6 +281,7 @@ export default function ProfilePage({ userID, setUserID }) {
                 slideImages={slideImages}
                 comment={comment}
                 addComment={addComment}
+                deleteLocation={deleteLocation}
                 commentChangeHandler={commentChangeHandler}
                 myLocation={true}
             />
