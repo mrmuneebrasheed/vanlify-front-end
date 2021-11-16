@@ -55,7 +55,7 @@
     margin: 10px auto;
 }
 .slide-container {
-    width: 60%;
+    width: 80%;
     height: 50vh;
     margin: 20px auto;
     align-self: center;
@@ -63,15 +63,17 @@
     align-items: center;
 }
 .prev-arrow {
-    width: 40px;
+    font-size: 0.5rem;
+    width: 30px;
+    background: transparent;
     padding: 5px;
-    border-radius: 20px;
     cursor: pointer;
 }
 .next-arrow {
-    width: 40px;
+    background: transparent;
+    font-size: 0.5rem;
+    width: 30px;
     padding: 5px;
-    border-radius: 20px;
     cursor: pointer;
 }
 .modal-image {
@@ -162,13 +164,18 @@
         font-size: 1rem;
     }
     .prev-arrow {
-        width: 10px;
+        /* width: 50px; */
+        font-size: 1rem;
     }
     .next-arrow {
-        width: 10px;
+        /* width: 10px; */
+        font-size: 1rem;
     }
     .delete-button {
         padding: 5px 10px;
         top: 20px;
+    }
+    .modify-button {
+        padding: 5px 10px;
     }
 }

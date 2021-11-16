@@ -82,7 +82,7 @@ export default function ProfilePage({ userID, setUserID }) {
             })
             .catch((err) => console.log(err.response));
     };
-    const getUserLocation = (id) => {
+    const getUserLocation = () => {
         axios
             .get(
                 `http://localhost:8000/locations/all/${
