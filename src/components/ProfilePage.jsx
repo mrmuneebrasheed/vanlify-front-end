@@ -77,11 +77,7 @@ export default function ProfilePage({ userID, setUserID }) {
                 setEmail(user.email ? user.email : "Email");
                 setPassword(user.password ? user.password : "Password");
                 setCity(user.city ? user.city : "City");
-                setBio(
-                    user.bio
-                        ? user.bio
-                        : "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud"
-                );
+                setBio(user.bio ? user.bio : "Bio");
                 setAvatar(user.avatar && user.avatar);
             })
             .catch((err) => console.log(err.response));

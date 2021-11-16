@@ -75,6 +75,9 @@ select option {
     border: 2px solid rgb(2, 56, 69);
     border-radius: 20px;
 }
+.modal-card .delete-button {
+    width: 100px;
+}
 @media (max-width: 768px) {
     .submit-button {
         width: 80%;
@@ -99,8 +102,10 @@ select option {
         transform: translate(0, 0);
     }
     .modal-card {
+        width: auto;
     }
     .add-location-form {
+        width: 100%;
         height: 80vh;
         flex-direction: column;
         overflow-y: scroll;
