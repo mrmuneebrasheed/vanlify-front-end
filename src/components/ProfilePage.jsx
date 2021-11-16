@@ -127,7 +127,7 @@ export default function ProfilePage({ userID, setUserID }) {
             backgroundColor: "rgb(2, 56, 69)",
             borderRadius: "20px",
             margin: "10px auto",
-            width: "80vw",
+            // width: "40vw",
             alignItems: "center",
         },
     };

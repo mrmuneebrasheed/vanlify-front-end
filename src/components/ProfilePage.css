@@ -199,6 +199,9 @@
     .location-card-heading {
         font-size: 1.5rem;
     }
+    .avatar-form {
+        width: 80vw;
+    }
     .avatar-label {
         width: 90%;
         font-size: 1.5rem;

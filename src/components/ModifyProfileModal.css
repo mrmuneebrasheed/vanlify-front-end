@@ -1,7 +1,7 @@
 .modify-profile-modal {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 40vw;
     margin: 10px auto;
     /* align-items: center;
     justify-content: center; */
@@ -18,8 +18,13 @@ textarea {
 textarea::placeholder {
     color: whitesmoke;
 }
+@media (max-width: 768px) {
+    .modify-profile-modal {
+        width: 80vw;
+    }
+}
 @media (max-width: 400px) {
     .modify-profile-modal {
-        width: 100%;
+        width: 80vw;
     }
 }
