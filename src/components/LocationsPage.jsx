@@ -62,6 +62,7 @@ export default function LocationsPage({ userID, setUserId }) {
                           <h3>{location.title}</h3>
                           <p>{location.address}</p>
                           <button
+                              className="details-button"
                               onClick={() => {
                                   setCurrentLocationId(location._id);
                                   setShowModal(true);

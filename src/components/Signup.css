@@ -14,6 +14,10 @@
     background-size: cover;
     /* box-shadow: 0 5px 20px 2px whitesmoke; */
     animation: animation 1s ease-out;
+    transition: all 200ms ease-in-out;
+}
+.signup-card:hover {
+    transform: scale(1.1);
 }
 .signup-form {
     display: flex;

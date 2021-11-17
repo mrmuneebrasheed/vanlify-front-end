@@ -115,6 +115,9 @@
     width: 40vw;
 }
 .avatar-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: rgb(2, 56, 69);
     cursor: pointer;
     padding: 10px;

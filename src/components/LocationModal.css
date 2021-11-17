@@ -54,6 +54,17 @@
     text-align: center;
     margin: 10px auto;
 }
+.flag {
+    align-self: flex-end;
+    padding: 2px;
+    color: whitesmoke;
+    /* background-color: red; */
+    cursor: pointer;
+}
+.flag::after {
+    content: Mark as illegal or inappropriate;
+    position: absolute;
+}
 .slide-container {
     width: 80%;
     height: 50vh;
@@ -102,6 +113,8 @@
     border-top: 2px solid whitesmoke;
 }
 .comments-heading {
+    display: flex;
+    justify-content: space-between;
     align-self: flex-start;
     color: whitesmoke;
 }

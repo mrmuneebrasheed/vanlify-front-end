@@ -12,6 +12,14 @@
         opacity: 1;
     }
 }
+.warning {
+    color: rgb(182, 1, 1);
+    background-color: whitesmoke;
+    text-align: center;
+    padding: 5px;
+    border-radius: 10px;
+    font-family: sans-serif;
+}
 .modal-heading {
     color: whitesmoke;
     text-align: center;
@@ -68,6 +76,13 @@ select {
     background-color: whitesmoke;
     padding: 10px;
     margin: 10px auto;
+}
+.image-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
 }
 select option {
     color: rgb(2, 56, 69);
