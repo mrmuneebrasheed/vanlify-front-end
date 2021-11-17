@@ -54,20 +54,30 @@
     text-align: center;
     margin: 10px auto;
 }
+.google-link {
+    color: whitesmoke;
+    text-decoration: underline;
+}
 .flag {
+    display: flex;
+    flex-direction: column;
     align-self: flex-end;
-    padding: 2px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 20px;
     color: whitesmoke;
     /* background-color: red; */
     cursor: pointer;
 }
-.flag::after {
+.flag-text {
+    font-size: 10px;
+}
+.flag:hover {
     content: Mark as illegal or inappropriate;
-    position: absolute;
 }
 .slide-container {
     width: 80%;
-    height: 50vh;
+    height: 500px;
     margin: 20px auto;
     align-self: center;
     justify-self: center;
@@ -135,6 +145,7 @@
     background-color: #e03131;
     color: whitesmoke;
     cursor: pointer;
+    z-index: 100;
 }
 .modify-button {
     padding: 10px 20px;
@@ -190,5 +201,12 @@
     }
     .modify-button {
         padding: 5px 10px;
+    }
+    .flag {
+        width: 70px;
+    }
+    .flag-text {
+        text-align: center;
+        font-size: 8px;
     }
 }

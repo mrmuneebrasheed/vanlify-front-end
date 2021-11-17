@@ -19,6 +19,7 @@ export default function LocationsPage({ userID, setUserId }) {
     const [comment, setComment] = useState("");
     const [refresh, setRefresh] = useState(true);
     const [showModal, setShowModal] = useState(false);
+    const [googleLink, setGoogleLink] = useState("");
     useEffect(() => {
         axios
             .get(
@@ -45,6 +46,9 @@ export default function LocationsPage({ userID, setUserId }) {
                 console.log(res);
                 setCurrentLocation(res.data.location);
                 setSlideImages(res.data.location.images);
+                setGoogleLink(
+                    `https://google.com/maps?q=${res.data.location.coordinates.lat},${res.data.location.coordinates.lng}`
+                );
             })
             .catch((err) => console.log(err));
     }, [currentLocationId, refresh]);
@@ -125,6 +129,7 @@ export default function LocationsPage({ userID, setUserId }) {
                         comment={comment}
                         test={test}
                         myLocation={false}
+                        googleLink={googleLink}
                     />
                     <p className="map-description">
                         <span>{locations.length}</span> places Found, Click on
