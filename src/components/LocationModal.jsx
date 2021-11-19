@@ -140,12 +140,12 @@ export default function LocationModal({
                             >
                                 Delete
                             </button>
-                            <button
+                            {/* <button
                                 onClick={modifyLocation}
                                 className="modify-button"
                             >
                                 Modify
-                            </button>
+                            </button> */}
                         </div>
                     )}
                     <div className="comments">

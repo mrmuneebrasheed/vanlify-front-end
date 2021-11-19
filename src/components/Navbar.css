@@ -65,6 +65,9 @@
     /* color: rgb(2, 56, 69); */
     border-bottom: 2px solid whitesmoke;
 }
+.nav-link:active {
+    background: rgb(2, 56, 69);
+}
 .nav-link span:hover {
     transform: scale(1.2);
 }

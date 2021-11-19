@@ -29,7 +29,7 @@
     /* font-family: "Courgette", cursive; */
 }
 .heading:hover {
-    transform: scale(1.1);
+    /* transform: scale(1.1); */
     background: linear-gradient(rgb(0, 0, 0, 0.5), rgb(0, 0, 0, 0.5));
 }
 
