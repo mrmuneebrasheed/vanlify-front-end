@@ -56,7 +56,7 @@ export default function AddLocation({ userID, setUserID }) {
             formData.append("images", image);
         });
         axios
-            .post("http://localhost:8000/locations/add", formData)
+            .post("locations/add", formData)
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
         setShowModal(false);
@@ -114,11 +114,7 @@ export default function AddLocation({ userID, setUserID }) {
     };
     useEffect(() => {
         axios
-            .get(
-                `http://localhost:8000/users/${
-                    userID ? userID : localStorage.getItem("userId")
-                }`
-            )
+            .get(`/users/${userID ? userID : localStorage.getItem("userId")}`)
             .then((res) => {
                 const { user } = res.data;
                 console.log(user);

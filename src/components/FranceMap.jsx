@@ -7,7 +7,7 @@ export default function FranceMap() {
     const [locations, setLocations] = useState([]);
     useEffect(() => {
         axios
-            .get(`http://localhost:8000/locations/all`)
+            .get(`/locations/all`)
             .then((res) => {
                 setLocations(res.data.locations);
             })

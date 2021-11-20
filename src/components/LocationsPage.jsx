@@ -88,10 +88,7 @@ export default function LocationsPage({ userID, setUserId }) {
         console.log(comment, user);
         const commentData = { username: user.username, description: comment };
         axios
-            .post(
-                `http://localhost:8000/locations/${currentLocationId}`,
-                commentData
-            )
+            .post(`/locations/${currentLocationId}`, commentData)
             .then((res) => {
                 console.log(res);
                 setRefresh((prev) => !prev);

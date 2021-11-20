@@ -30,7 +30,7 @@ export default function Signup({ userID, setUserID }) {
     const handleSignup = (e) => {
         e.preventDefault();
         axios
-            .post("http://localhost:8000/users/signup", {
+            .post("/users/signup", {
                 username,
                 email,
                 password,

@@ -65,11 +65,7 @@ export default function ProfilePage({ userID, setUserID }) {
     }
     const getUser = () => {
         axios
-            .get(
-                `http://localhost:8000/users/${
-                    userID ? userID : localStorage.getItem("userId")
-                }`
-            )
+            .get(`users/${userID ? userID : localStorage.getItem("userId")}`)
             .then((res) => {
                 const { user } = res.data;
                 setUser(user);
@@ -85,7 +81,7 @@ export default function ProfilePage({ userID, setUserID }) {
     const getUserLocation = () => {
         axios
             .get(
-                `http://localhost:8000/locations/all/${
+                `locations/all/${
                     userID ? userID : localStorage.getItem("userId")
                 }`
             )
@@ -97,7 +93,7 @@ export default function ProfilePage({ userID, setUserID }) {
         e.preventDefault();
         const formData = { username, password, bio, avatar, email, city };
         axios
-            .put(`http://localhost:8000/users/${userId}`, formData)
+            .put(`users/${userId}`, formData)
             .then((res) => {
                 console.log(res);
             })
@@ -110,7 +106,7 @@ export default function ProfilePage({ userID, setUserID }) {
         const formData = new FormData();
         formData.append("image", image);
         axios
-            .put(`http://localhost:8000/users/avatar/${userId}`, formData)
+            .put(`/users/avatar/${userId}`, formData)
             .then((res) => console.log(res))
             .then(() => setRefresh((prev) => !prev))
             .catch((err) => console.log(err));
@@ -133,7 +129,7 @@ export default function ProfilePage({ userID, setUserID }) {
     };
     useEffect(() => {
         axios
-            .get(`http://localhost:8000/locations/${currentLocationId}`)
+            .get(`/locations/${currentLocationId}`)
             .then((res) => {
                 setCurrentLocation(res.data.location);
                 setSlideImages(res.data.location.images);
@@ -151,10 +147,7 @@ export default function ProfilePage({ userID, setUserID }) {
         console.log(comment, user);
         const commentData = { username: user.username, description: comment };
         axios
-            .post(
-                `http://localhost:8000/locations/${currentLocationId}`,
-                commentData
-            )
+            .post(`/locations/${currentLocationId}`, commentData)
             .then((res) => {
                 console.log(res);
                 setRefresh((prev) => !prev);
@@ -165,7 +158,7 @@ export default function ProfilePage({ userID, setUserID }) {
     };
     const deleteLocation = () => {
         axios
-            .delete(`http://localhost:8000/locations/${currentLocationId}`)
+            .delete(`/locations/${currentLocationId}`)
             .then((res) => {
                 console.log(res);
                 setShowModal(false);

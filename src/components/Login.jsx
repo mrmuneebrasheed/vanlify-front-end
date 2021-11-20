@@ -21,7 +21,7 @@ export default function Login({ userID, setUserID }) {
     const onSubmit = async (e) => {
         e.preventDefault();
         axios
-            .post("http://localhost:8000/users/login", {
+            .post("/users/login", {
                 username: username,
                 password: password,
             })
