@@ -41,7 +41,7 @@ export default function LocationsPage({ userID, setUserId }) {
     }, []);
     useEffect(() => {
         axios
-            .get(`http://localhost:8000/locations/${currentLocationId}`)
+            .get(`/locations/${currentLocationId}`)
             .then((res) => {
                 console.log(res);
                 setCurrentLocation(res.data.location);

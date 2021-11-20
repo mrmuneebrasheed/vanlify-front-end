@@ -65,7 +65,7 @@ export default function ProfilePage({ userID, setUserID }) {
     }
     const getUser = () => {
         axios
-            .get(`users/${userID ? userID : localStorage.getItem("userId")}`)
+            .get(`/users/${userID ? userID : localStorage.getItem("userId")}`)
             .then((res) => {
                 const { user } = res.data;
                 setUser(user);
@@ -81,7 +81,7 @@ export default function ProfilePage({ userID, setUserID }) {
     const getUserLocation = () => {
         axios
             .get(
-                `locations/all/${
+                `/locations/all/${
                     userID ? userID : localStorage.getItem("userId")
                 }`
             )
@@ -93,7 +93,7 @@ export default function ProfilePage({ userID, setUserID }) {
         e.preventDefault();
         const formData = { username, password, bio, avatar, email, city };
         axios
-            .put(`users/${userId}`, formData)
+            .put(`/users/${userId}`, formData)
             .then((res) => {
                 console.log(res);
             })

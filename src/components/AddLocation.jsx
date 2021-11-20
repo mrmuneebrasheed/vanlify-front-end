@@ -56,7 +56,7 @@ export default function AddLocation({ userID, setUserID }) {
             formData.append("images", image);
         });
         axios
-            .post("locations/add", formData)
+            .post("/locations/add", formData)
             .then((res) => console.log(res))
             .catch((err) => console.log(err));
         setShowModal(false);
