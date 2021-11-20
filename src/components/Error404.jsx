@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./Navbar";
+import { useNavigate } from "react-router";
 
 export default function Error404() {
+    const navigate = useNavigate();
+    useEffect(() => {
+        navigate("/home");
+    }, []);
     return (
         <div>
             <Navbar />

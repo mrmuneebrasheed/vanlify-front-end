@@ -16,30 +16,30 @@ export default function Navbar(props) {
             </div>
             <div>
                 {props.signup === false && !props.loggedIn && (
-                    <Link className="nav-link" to="/users/signup">
+                    <Link className="nav-link" to="/home/users/signup">
                         <span>Sign Up</span>
                     </Link>
                 )}
                 {props.signup === true && !props.loggedIn && (
-                    <Link className="nav-link" to="/">
+                    <Link className="nav-link" to="/home">
                         <span>Home</span>
                     </Link>
                 )}
                 {props.loggedIn === true && (
                     <>
-                        <Link className="nav-link" to="/users/profile">
+                        <Link className="nav-link" to="/home/users/profile">
                             <span>Profile</span>
                         </Link>
-                        <Link className="nav-link" to="/locations/add">
+                        <Link className="nav-link" to="/home/locations/add">
                             <span>Add a Location</span>
                         </Link>
-                        <Link className="nav-link" to="/locations/explore">
+                        <Link className="nav-link" to="/home/locations/explore">
                             Explore
                         </Link>
                     </>
                 )}
                 {props.loggedIn === true && (
-                    <Link className="nav-link" to="/">
+                    <Link className="nav-link" to="/home">
                         <span>Log Out</span>
                     </Link>
                 )}
@@ -50,14 +50,14 @@ export default function Navbar(props) {
                         <div>
                             <Link
                                 className="drop-down-link"
-                                to="/locations/add"
+                                to="/home/locations/add"
                             >
                                 <span>Add a Location</span>
                             </Link>
 
                             <Link
                                 className="drop-down-link"
-                                to="/locations/explore"
+                                to="/home/locations/explore"
                             >
                                 Explore
                             </Link>
@@ -66,22 +66,28 @@ export default function Navbar(props) {
                 </li>
                 <li>
                     {props.signup === false && !props.loggedIn && (
-                        <Link className="drop-down-link" to="/users/signup">
+                        <Link
+                            className="drop-down-link"
+                            to="/home/users/signup"
+                        >
                             <span>Sign Up</span>
                         </Link>
                     )}
                     {props.signup === true && !props.loggedIn && (
-                        <Link className="drop-down-link" to="/">
+                        <Link className="drop-down-link" to="/home">
                             <span>Home</span>
                         </Link>
                     )}
                     {props.loggedIn === true && (
-                        <Link className="drop-down-link" to="/users/profile">
+                        <Link
+                            className="drop-down-link"
+                            to="/home/users/profile"
+                        >
                             <span>Profile</span>
                         </Link>
                     )}
                     {props.loggedIn === true && (
-                        <Link className="drop-down-link" to="/">
+                        <Link className="drop-down-link" to="/home">
                             <span>Log Out</span>
                         </Link>
                     )}

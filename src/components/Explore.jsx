@@ -29,7 +29,7 @@ export default function Explore() {
             <div className="container">
                 {types.map((type) => (
                     <Link
-                        to={`/locations/explore/types/${type.name
+                        to={`/home/locations/explore/types/${type.name
                             .split(" ")
                             .join("")}`}
                     >

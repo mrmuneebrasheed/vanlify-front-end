@@ -40,7 +40,7 @@ export default function Signup({ userID, setUserID }) {
                 console.log(res);
                 localStorage.setItem("userId", res.data.user._id);
                 setUserID(res.data.user._id);
-                navigate("/users/profile");
+                navigate("/home/users/profile");
             })
             .catch((e) => {
                 console.log("error", e.response);

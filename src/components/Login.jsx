@@ -28,7 +28,7 @@ export default function Login({ userID, setUserID }) {
             .then((res) => {
                 console.log(res);
                 setUserID(res.data.userId);
-                navigate("/users/profile");
+                navigate("/home/users/profile");
             })
             .catch((err) => {
                 console.log(err.response);
