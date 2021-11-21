@@ -219,11 +219,7 @@ export default function ProfilePage({ userID, setUserID }) {
                     <div className="avatar">
                         <div>
                             <img
-                                src={
-                                    avatar
-                                        ? `http://localhost:8000${avatar}`
-                                        : Image
-                                }
+                                src={avatar ? require(avatar) : Image}
                                 alt="avatar"
                             />
                             <span className="username">{username}</span>

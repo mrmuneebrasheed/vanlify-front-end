@@ -22,18 +22,14 @@ export default function LocationsPage({ userID, setUserId }) {
     const [googleLink, setGoogleLink] = useState("");
     useEffect(() => {
         axios
-            .get(
-                `http://localhost:8000/users/${
-                    userID ? userID : localStorage.getItem("userId")
-                }`
-            )
+            .get(`/users/${userID ? userID : localStorage.getItem("userId")}`)
             .then((res) => {
                 const { user } = res.data;
                 setUser(user);
             })
             .catch((err) => console.log(err.response));
         axios
-            .get(`http://localhost:8000/locations/type/${type}`)
+            .get(`/locations/type/${type}`)
             .then((res) => {
                 setLocations(res.data.locations);
             })
