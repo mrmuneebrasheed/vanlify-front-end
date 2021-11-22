@@ -134,7 +134,7 @@ export default function ProfilePage({ userID, setUserID }) {
                 setCurrentLocation(res.data.location);
                 setSlideImages(res.data.location.images);
             })
-            .catch((err) => console.log(err.response));
+            .catch((err) => console.log(err));
     }, [currentLocationId, refresh]);
     const setData = (locationId) => {
         setCurrentLocationId(locationId);
@@ -219,7 +219,7 @@ export default function ProfilePage({ userID, setUserID }) {
                     <div className="avatar">
                         <div>
                             <img
-                                src={avatar ? require(avatar) : Image}
+                                src={avatar ? require(`../${avatar}`) : Image}
                                 alt="avatar"
                             />
                             <span className="username">{username}</span>
@@ -250,7 +250,7 @@ export default function ProfilePage({ userID, setUserID }) {
                     {myLocations?.map((location) => (
                         <LocationCard
                             setData={() => setData(location._id)}
-                            img={location.images[0]}
+                            img={require(`../${location.images[0]}`)}
                             key={location._id}
                             id={location._id}
                             title={location.title}
