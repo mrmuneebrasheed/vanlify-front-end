@@ -110,7 +110,7 @@ export default function LocationModal({
                                 <div className="each-slide" key={index}>
                                     <img
                                         className="modal-image"
-                                        src={require(slideImage)}
+                                        src={slideImage}
                                         alt="No Image"
                                     ></img>
                                 </div>

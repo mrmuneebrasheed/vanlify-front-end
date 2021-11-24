@@ -218,10 +218,7 @@ export default function ProfilePage({ userID, setUserID }) {
                     <h1 className="profile-heading">Profile</h1>
                     <div className="avatar">
                         <div>
-                            <img
-                                src={avatar ? require(`../${avatar}`) : Image}
-                                alt="avatar"
-                            />
+                            <img src={avatar ? avatar : Image} alt="avatar" />
                             <span className="username">{username}</span>
                         </div>
 
@@ -250,7 +247,7 @@ export default function ProfilePage({ userID, setUserID }) {
                     {myLocations?.map((location) => (
                         <LocationCard
                             setData={() => setData(location._id)}
-                            img={require(`../${location.images[0]}`)}
+                            img={`${location.images[0]}`}
                             key={location._id}
                             id={location._id}
                             title={location.title}
